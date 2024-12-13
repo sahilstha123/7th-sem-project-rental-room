@@ -1,0 +1,32 @@
+.listPage {
+  display: flex;
+  height: 100vh;
+  .listConatiner {
+    flex: 3;
+    height: 100%;
+    .wrapper {
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      overflow-y: auto;
+      max-height: 100%;
+      padding-bottom: 150px;
+
+      /* Hide scrollbar for Chrome, Safari, and Edge */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Hide scrollbar for Firefox */
+      scrollbar-width: none;
+
+      /* Optional: Smooth scrolling */
+      scroll-behavior: smooth;
+    }
+  }
+  .mapContainer {
+    flex: 2;
+    background-color: blue;
+  }
+}

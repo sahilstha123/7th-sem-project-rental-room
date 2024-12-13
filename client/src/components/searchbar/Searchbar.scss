@@ -1,0 +1,62 @@
+@use "../../responsive.scss" as res;
+
+.searchBar {
+  form {
+    border: 1px solid #999;
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    gap: 5px;
+
+    @include res.sm {
+      flex-direction: column;
+      border: none;
+    }
+  }
+
+  input {
+    border: none;
+    padding: 0px 10px;
+    width: 200px;
+    // Large screens: padding adjustments and specific width
+    @include res.lg {
+      padding: 0px 5px;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        width: 140px;
+      }
+    }
+
+    // Medium screens: width auto and padding adjustments
+    @include res.md {
+      width: auto;
+      padding: 20px;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        width: auto;
+      }
+    }
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    background-color: #c82918;
+    flex: 1;
+
+    @include res.md {
+      padding: 10px 0;
+    }
+  }
+}
+.searchBar input {
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+  @include res.sm {
+    border: 1px solid #999;
+  }
+}

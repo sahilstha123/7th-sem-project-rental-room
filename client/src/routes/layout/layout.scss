@@ -1,0 +1,29 @@
+@use "../../responsive.scss" as res;
+
+.layout {
+  // background-color: rebeccapurple;
+  height: 100vh;
+  max-width: 1366px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include res.lg {
+    max-width: 1280px;
+    // background-color: aqua;
+  }
+
+  @include res.md {
+    max-width: 768px;
+    // background-color: blue;
+  }
+
+  @include res.sm {
+    max-width: 640px;
+    // background-color: rgb(210, 22, 22);
+  }
+  .content {
+    // background: purple;
+    height: calc(100vh - 100px);
+  }
+}
