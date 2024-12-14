@@ -1,61 +1,103 @@
-.login {
-  height: 100%;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .formContainer {
-    flex: 3;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.form-box {
+  width: 90%;
+  max-width: 500px;
+  padding: 50px 60px 70px;
+  text-align: center;
+  border-radius: 10px;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+  h1 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #3D4785;
+    position: relative;
 
-      input {
-        padding: 20px;
-        border: 1px solid gray;
-        border-radius: 5px;
-      }
-
-      button {
-        padding: 20px;
-        border-radius: 5px;
-        border: none;
-        background-color: #c82918;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-
-        &:disabled {
-          background-color: #bed9d8;
-          cursor: not-allowed;
-        }
-      }
-
-      span {
-        color: rgba(255, 0, 0, 0.591);
-      }
-
-      a {
-        font-size: 14px;
-        color: gray;
-        border-bottom: 1px solid gray;
-        width: max-content;
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background-color: #3D4785;
     }
   }
+}
 
-  .imgContainer {
-    flex: 2;
-    background-color: #fcf5f3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    img {
-      width: 100%;
+.input-field {
+  background: #ebeaea;
+  margin: 15px 0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-left: 15px;
+    color: #626060;
+  }
+
+  input {
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: 0;
+    padding: 18px 15px;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+  }
+}
+
+form {
+  p {
+    font-size: 13px;
+    margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+      color: #3D4785;
+    }
+  }
+}
+
+.btn-field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    flex-basis: 48%;
+    background: #3D4785;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 1s;
+
+    &.disabled {
+      background-color: #ebeaea;
+      color: #626060;
     }
   }
 }
