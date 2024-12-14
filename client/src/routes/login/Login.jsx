@@ -1,28 +1,55 @@
 import React, { useState } from "react";
-import "./login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./login.scss";
+import apiRequest from "../../lib/apiRequest";
 
 export const Login = () => {
-  // State to toggle password visibility
-  const [showPassword, setShowPassword] = useState(false);
+  // States
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Define showPassword state
+  const navigate = useNavigate();
 
-  // Function to toggle password visibility
+  // Handle form submission
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    const formData = new FormData(e.target);
+    const username = formData.get("username");
+    const password = formData.get("password");
+    try {
+      const res = await apiRequest.post("/auth/login", {
+        username,
+        password,
+      });
+      console.log(res);
+      // navigate("/"); // Redirect on success (uncomment when ready)
+    } catch (error) {
+      setError(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Toggle password visibility
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prevState) => !prevState);
   };
 
   return (
     <div className="login">
       <div className="formContainer">
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <h1>Welcome back</h1>
-          <input name="username" type="text" placeholder="Username" />
+          <input name="username" type="text" placeholder="Username" required />
           <div style={{ position: "relative" }}>
             <input
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
+              required
               style={{
                 padding: "20px",
                 border: "1px solid gray",
@@ -44,12 +71,15 @@ export const Login = () => {
               }}
             />
           </div>
-          <button>Login</button>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>
       </div>
       <div className="imgContainer">
-        <img src="/bg.png" alt="" />
+        <img src="/bg.png" alt="background" />
       </div>
     </div>
   );
