@@ -37,7 +37,7 @@ export const Login = async (req, res) => {
     // Check if the password is correct
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid)
-      return res.status(401).json({ message: "Invalid Credentials!" });
+      return res.status(401).json({ message: "Password doesnot match" });
     // Generate a cookie token and send to the user
     // res.setHeader("Set-Cookie", "test=" + "myValue");
     const age = 1000 * 60 * 60 * 24 * 7;
