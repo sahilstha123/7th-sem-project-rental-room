@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
 import menu from "../../assets/menu.png";
+import NWbutton from "../button/NWbutton";
+import { Link, useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const nav = useNavigate();
+  const handleLogin = () => {
+    nav("/login")
+  }
   return (
     <>
       <nav>
@@ -19,10 +26,10 @@ export const Navbar = () => {
           <a href="">Contact</a>
         </div>
         <div className="right">
-          <a href="">Signin</a>
-          <a href="" className="signup">
-            Signup
-          </a>
+          <NWbutton onClick={handleLogin} className="signup" >Login</NWbutton>
+          <Link to={"/register"}>
+            <NWbutton className="signup">Signup</NWbutton>
+          </Link>
           <div className="menuIcon">
             <img src={menu} alt="" onClick={() => setOpen((prev) => !prev)} />
           </div>

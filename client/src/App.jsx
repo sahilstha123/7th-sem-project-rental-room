@@ -8,7 +8,7 @@ import { Layout } from "./routes/layout/Layout";
 import "./routes/layout/layout.scss";
 import { Singlepage } from "./routes/SinglePage/Singlepage";
 import Register from "./routes/Register/Register";
-import { Login } from "./routes/login/Login";
+import Login from "./routes/login/Login";
 
 function App() {
   const router = createBrowserRouter([
