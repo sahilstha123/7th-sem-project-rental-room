@@ -1,10 +1,11 @@
+
 import React from "react";
 import "./Login.scss";
 import NWbutton from "../../components/button/NWbutton";
 
 const Login = () => {
   return (
-    <>
+
       <div className="container">
         <div className="form-box">
           <h1 id="heading">Sign up</h1>
