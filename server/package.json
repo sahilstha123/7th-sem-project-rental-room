@@ -156,6 +156,7 @@
     "unpipe": "^1.0.0",
     "util-deprecate": "^1.0.2",
     "utils-merge": "^1.0.1",
+    "uuid": "^11.0.3",
     "vary": "^1.1.2",
     "webidl-conversions": "^3.0.1",
     "whatwg-url": "^5.0.0",
