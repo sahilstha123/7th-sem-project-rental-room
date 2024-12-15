@@ -98,14 +98,3 @@ a {
     right: 0;
   }
 }
-
-// Fix for medium screens
-@include res.md {
-  .right {
-    gap: 10px;
-    a {
-      padding: 12px 12px;
-      margin: 0; // Fix overflow
-    }
-  }
-}

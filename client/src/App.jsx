@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import { Navbar } from "./components/nav/Navbar";
+// import { Navbar } from "./components/nav/Navbar";
 import { Homepage } from "./routes/homepage/Homepage"; // Import Homepage correctly
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListPage from "./routes/listPage/ListPage";
-import { Layout } from "./routes/layout/Layout";
+// import { Layout } from "./routes/layout/Layout";
 import "./routes/layout/layout.scss";
 import { Singlepage } from "./routes/SinglePage/Singlepage";
 import Register from "./routes/Register/Register";
 import Login from "./routes/login/Login";
+import Layout from "./routes/layout/Layout";
 
 function App() {
   const router = createBrowserRouter([

@@ -18,10 +18,17 @@ const Login = () => {
     const formData = new FormData(e.target);
     const username = formData.get("username");
     const password = formData.get("password");
+
     try {
-      const res = await apiRequest.post("/auth/login", { username, password });
-      console.log(res);
-      navigate("/");
+      const res = await apiRequest.post(
+        "/auth/login",
+        { username, password },
+        {
+          withCredentials: true, // Allow cookies to be sent with requests
+        }
+      );
+      localStorage.setItem("user", JSON.stringify(res.data));
+      navigate("/"); // Redirect after successful login
     } catch (error) {
       setError(error.response.data.message);
     } finally {
@@ -55,14 +62,15 @@ const Login = () => {
             </div>
           </div>
           {error && <p className="error">{error}</p>}
+          <p>
+            Forgot password? <a href="#">Click Here</a>
+          </p>
           <div className="btn-field">
             <button type="submit" className="button" disabled={isLoading}>
               {isLoading ? "Loading..." : "Login"}
             </button>
           </div>
-          <p>
-            Forgot password? <a href="#">Click Here</a>
-          </p>
+
           <span>
             Don't have an account? <a href="#">Sign Up</a>
           </span>
