@@ -3,11 +3,23 @@ import cookieParser from "cookie-parser";
 import postRoutes from "./routes/post.route.js";
 import authRoute from "./routes/auth.route.js";
 import cors from "cors";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 
-// Allow requests from the client URL and handle cookies
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.CLIENT_URL, // Allowed client URL (React app)
+  credentials: true, // Allow cookies to be sent with the requests
+};
+
+console.log("CORS Origin:", process.env.CLIENT_URL); // Debugging log
+
+// Use CORS middleware with the specified options
+app.use(cors(corsOptions));
 
 // Middleware to parse JSON and cookies
 app.use(express.json());

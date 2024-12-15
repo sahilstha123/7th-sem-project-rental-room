@@ -27,15 +27,22 @@ function Register() {
     }
 
     try {
-      const res = await apiRequest.post("/auth/register", {
-        username,
-        email,
-        password,
-        confirmPassword,
-      });
+      // Add `withCredentials: true` for cookie support
+      const res = await apiRequest.post(
+        "/auth/register",
+        {
+          username,
+          email,
+          password,
+          confirmPassword,
+        },
+        { withCredentials: true }
+      );
+
+      // Redirect to login after successful registration
       navigate("/login");
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data?.message || "An error occurred");
     } finally {
       setIsLoading(false);
     }
