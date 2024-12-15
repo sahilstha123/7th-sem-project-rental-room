@@ -3,6 +3,7 @@ import "./Login.scss";
 import NWbutton from "../../components/button/NWbutton";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest"; // Ensure this import
+import Logo from "../../assets/logo.png";
 
 const Login = () => {
   // States
@@ -32,13 +33,14 @@ const Login = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="form-box">
-          <h1 id="heading">Sign up</h1>
-          <form onSubmit={handleOnSubmit}>
-            <div className="input-group">
-              <div className="input-field">
-                <i className="fa-solid fa-user"></i>
+      <div class="container">
+        <div class="form-box">
+          {/* Logo and Title */}
+          <img src={Logo} alt="Logo" class="signup-logo" />
+
+          <form onsubmit="handleOnSubmit(event)">
+            <div class="input-group">
+              <div class="input-field">
                 <input
                   name="username"
                   type="text"
@@ -47,27 +49,29 @@ const Login = () => {
                 />
               </div>
 
-              <div className="input-field">
-                <i className="fa-solid fa-lock"></i>
+              <div class="input-field">
                 <input
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   placeholder="password"
-                />
-                <i
-                  onClick={() => setShowPassword(!showPassword)}
-                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                  id="passwordfield"
                 />
               </div>
+
               <p>
                 Forgot password?<a href="#">Click Here</a>
               </p>
             </div>
-            {error && <p className="error">{error}</p>}
-            <div className="btn-field">
-              <NWbutton disabled={isLoading}>Login</NWbutton>
-              <NWbutton>Signup</NWbutton>
+            <p class="error" id="error-message"></p>
+            <div class="btn-field">
+              <button type="submit" class="button">
+                Login
+              </button>
             </div>
+
+            <span>
+              Don't have an account? <a href="#">Sign Up</a>
+            </span>
           </form>
         </div>
       </div>
