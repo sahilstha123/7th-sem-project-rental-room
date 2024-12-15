@@ -36,7 +36,6 @@ const Login = () => {
       <div className="container">
         <div className="form-box">
           <img src={Logo} alt="Logo" className="signup-logo" />
-          <h1>Login</h1>
           <form onSubmit={handleOnSubmit}>
             <div className="input-group">
               <div className="input-field">
@@ -48,10 +47,6 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                 />
-                <i
-                  onClick={togglePasswordVisibility}
-                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-                ></i>
               </div>
             </div>
             {error && <p className="error">{error}</p>}
