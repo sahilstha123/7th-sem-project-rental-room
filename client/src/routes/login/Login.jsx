@@ -3,6 +3,7 @@ import "./Login.scss";
 import NWbutton from "../../components/button/NWbutton";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest"; // Ensure this import
+import Logo from "../../assets/logo.png";
 
 const Login = () => {
   // States
@@ -34,40 +35,31 @@ const Login = () => {
     <>
       <div className="container">
         <div className="form-box">
-          <h1 id="heading">Log In</h1>
+
+          <img src={Logo} alt="Logo" className="signup-logo" />
+          <h1 id="heading">Log In</h
           <form onSubmit={handleOnSubmit}>
             <div className="input-group">
               <div className="input-field">
-                <i className="fa-solid fa-user"></i>
-                <input
-                  name="username"
-                  type="text"
-                  placeholder="username"
-                  id="usernamefield"
-                />
+                <input name="username" type="text" placeholder="Username" />
               </div>
-
               <div className="input-field">
-                <i className="fa-solid fa-lock"></i>
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="password"
-                />
-                <i
-                  onClick={() => setShowPassword(!showPassword)}
-                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                  placeholder="Password"
                 />
               </div>
-              <p>
-                Forgot password?<a href="#">Click Here</a>
-              </p>
             </div>
             {error && <p className="error">{error}</p>}
             <div className="btn-field">
-              <NWbutton disabled={isLoading}>Login</NWbutton>
-              <NWbutton>Signup</NWbutton>
+              <button type="submit" className="button" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
+              </button>
             </div>
+            <span>
+              Don't have an account? <a href="#">Sign Up</a>
+            </span>
           </form>
         </div>
       </div>
