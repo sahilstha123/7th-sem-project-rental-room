@@ -33,48 +33,33 @@ const Login = () => {
 
   return (
     <>
-      <div class="container">
-        <div class="form-box">
-          {/* <!-- Logo and Title --> */}
-          <img src={Logo} alt="Logo" class="signup-logo" />
+      <div className="container">
+        <div className="form-box">
+          <img src={Logo} alt="Logo" className="signup-logo" />
           <h1>Login</h1>
-
-          <form onsubmit="handleOnSubmit(event)">
-            <div class="input-group">
-              <div class="input-field">
-                <input
-                  name="username"
-                  type="text"
-                  placeholder="username"
-                  id="usernamefield"
-                />
+          <form onSubmit={handleOnSubmit}>
+            <div className="input-group">
+              <div className="input-field">
+                <input name="username" type="text" placeholder="Username" />
               </div>
-
-              <div class="input-field">
+              <div className="input-field">
                 <input
                   name="password"
-                  type="password"
-                  placeholder="password"
-                  id="passwordfield"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
                 />
                 <i
-                  onclick="togglePasswordVisibility()"
-                  class="fa fa-eye"
-                  id="toggle-password"
+                  onClick={togglePasswordVisibility}
+                  className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
                 ></i>
               </div>
-
-              <p>
-                Forgot password?<a href="#">Click Here</a>
-              </p>
             </div>
-            <p class="error" id="error-message"></p>
-            <div class="btn-field">
-              <button type="submit" class="button">
-                Login
+            {error && <p className="error">{error}</p>}
+            <div className="btn-field">
+              <button type="submit" className="button" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
               </button>
             </div>
-
             <span>
               Don't have an account? <a href="#">Sign Up</a>
             </span>
