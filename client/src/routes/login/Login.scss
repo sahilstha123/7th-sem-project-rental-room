@@ -83,12 +83,12 @@ body {
 .btn-field {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Merged conflicting styles */
   margin-bottom: 14px;
 
   .button {
     flex-basis: 100%;
-    background: #3d4785;
+    background: #3d4785; /* Consistent capitalization */
     color: #fff;
     height: 40px;
     border-radius: 20px;
@@ -104,7 +104,7 @@ body {
 }
 
 .signup-logo {
-  max-width: 100px;
+  max-width: 100px; /* Merged style: consistent size */
   margin-bottom: 20px;
   display: block;
   margin-left: auto;
