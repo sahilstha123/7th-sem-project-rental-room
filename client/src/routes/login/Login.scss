@@ -11,7 +11,7 @@ body {
 
 .container {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,77 +27,86 @@ body {
   h1 {
     font-size: 30px;
     margin-bottom: 40px;
-    color: #3D4785;
+    color: #3d4785;
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
       width: 40px;
       height: 3px;
-      background-color: #3D4785;
+      background-color: #3d4785;
     }
   }
 }
 
-.input-field {
-  background: #ebeaea;
-  margin: 15px 0;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
+.input-group {
+  .input-field {
+    background: #ebeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
 
-  i {
-    margin-left: 15px;
-    color: #626060;
+    input {
+      width: 100%;
+      background: transparent;
+      outline: none;
+      border: 0;
+      padding: 18px 15px;
+      max-height: 65px;
+      transition: max-height 0.5s;
+      overflow: hidden;
+    }
   }
 
-  input {
-    width: 100%;
-    background: transparent;
-    outline: none;
-    border: 0;
-    padding: 18px 15px;
-    max-height: 65px;
-    transition: max-height 0.5s;
-    overflow: hidden;
-  }
-}
-
-form {
   p {
     font-size: 13px;
     margin-bottom: 20px;
 
     a {
       text-decoration: none;
-      color: #3D4785;
+      color: #3d4785;
     }
   }
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .btn-field {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 14px;
 
-  button {
-    flex-basis: 48%;
-    background: #3D4785;
+  .button {
+    flex-basis: 100%;
+    background: #3d4785;
     color: #fff;
     height: 40px;
     border-radius: 20px;
     border: none;
     outline: none;
     cursor: pointer;
-    transition: background 1s;
 
     &.disabled {
       background-color: #ebeaea;
       color: #626060;
     }
   }
+}
+
+.signup-logo {
+  max-width: 100px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
