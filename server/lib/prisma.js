@@ -1,5 +1,9 @@
+// lib/prisma.js
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Enable Prisma logging for queries, info, warnings, and errors
+const prisma = new PrismaClient({
+  log: ["query", "info", "warn", "error"],
+});
 
 export default prisma;

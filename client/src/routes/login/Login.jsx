@@ -35,7 +35,9 @@ const Login = () => {
     <>
       <div className="container">
         <div className="form-box">
+
           <img src={Logo} alt="Logo" className="signup-logo" />
+          <h1 id="heading">Log In</h
           <form onSubmit={handleOnSubmit}>
             <div className="input-group">
               <div className="input-field">
