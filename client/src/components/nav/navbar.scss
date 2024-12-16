@@ -81,20 +81,33 @@ a {
 
 .menu {
   position: absolute;
-  background-color: rgba(180, 205, 222, 0.462);
+  background-color: rgba(180, 205, 222, 0.95); // Visible background
   color: black;
   height: 100vh;
   top: 0;
-  right: -50%;
+  right: -50%; // Hidden by default
   width: 50%;
-  transition: all 1s ease;
+  transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  z-index: 1000; // Ensures it's above other elements
 
   &.active {
-    right: 0;
+    right: 0; // Show menu when active
+  }
+
+  a {
+    color: black; // Link color
+    text-decoration: none; // Remove underlines
+    margin: 15px 0; // Add spacing between links
+    font-size: 1.2rem; // Adjust text size
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #c82918; // Hover color
+    }
   }
 }
