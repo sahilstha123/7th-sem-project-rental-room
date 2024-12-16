@@ -63,6 +63,49 @@ a {
     padding: 12px 24px;
     border: none;
   }
+  .user {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    gap: 24px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    span {
+      @include res.sm {
+        display: none;
+      }
+    }
+
+    .profile {
+      padding: 12px 24px;
+      background-color: #c82918;
+      color: white;
+      cursor: pointer;
+      border: none;
+      position: relative;
+
+      .notification {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }
 
 .menuIcon {
@@ -81,33 +124,20 @@ a {
 
 .menu {
   position: absolute;
-  background-color: rgba(180, 205, 222, 0.95); // Visible background
+  background-color: rgba(180, 205, 222, 0.462);
   color: black;
   height: 100vh;
   top: 0;
-  right: -50%; // Hidden by default
+  right: -50%;
   width: 50%;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1000; // Ensures it's above other elements
+  font-size: 1.15rem;
 
   &.active {
-    right: 0; // Show menu when active
-  }
-
-  a {
-    color: black; // Link color
-    text-decoration: none; // Remove underlines
-    margin: 15px 0; // Add spacing between links
-    font-size: 1.2rem; // Adjust text size
-    font-weight: 500;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #c82918; // Hover color
-    }
+    right: 0;
   }
 }
