@@ -1,49 +1,51 @@
 import React, { useState } from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
 import menu from "../../assets/menu.png";
 import NWbutton from "../button/NWbutton";
 import { Link, useNavigate } from "react-router-dom";
+
 export const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // Menu toggle state
   const nav = useNavigate();
+
   const handleLogin = () => {
-    nav("/login")
-  }
+    nav("/login"); // Redirect to login page when clicked
+  };
+
   return (
-    <>
-      <nav>
-        <div className="left">
-          <a href="/" className="logo">
-            <img src={logo} alt="Smart Stay logo" />
-            <span>Smart Stay</span>
-          </a>
-          <a href="/">Home</a>
-
-          <a href="">About</a>
-          <a href="">Agents</a>
-          <a href="">Contact</a>
+    <nav>
+      <div className="left">
+        <Link to="/" className="logo">
+          {" "}
+          {/* Home link */}
+          <img src={logo} alt="Smart Stay logo" />
+          <span>Smart Stay</span>
+        </Link>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/agents">Agents</Link>
+        <Link to="/contact">Contact</Link>
+      </div>
+      <div className="right">
+        <NWbutton onClick={handleLogin} className="signup">
+          Login
+        </NWbutton>
+        <Link to="/register">
+          <NWbutton className="signup">Signup</NWbutton>
+        </Link>
+        <div className="menuIcon">
+          <img src={menu} alt="Menu" onClick={() => setOpen((prev) => !prev)} />
         </div>
-        <div className="right">
-          <NWbutton onClick={handleLogin} className="signup" >Login</NWbutton>
-          <Link to={"/register"}>
-            <NWbutton className="signup">Signup</NWbutton>
-          </Link>
-          <div className="menuIcon">
-            <img src={menu} alt="" onClick={() => setOpen((prev) => !prev)} />
-          </div>
-          <div className={open ? "menu active" : "menu"}>
-            <a href="/">Home</a>
-
-            <a href="">About</a>
-            <a href="">Agents</a>
-            <a href="">Contact</a>
-            <a href="">Sign in </a>
-            <a href="">Sign Up</a>
-          </div>
+        <div className={open ? "menu active" : "menu"}>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/agents">Agents</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/login">Sign in</Link>
+          <Link to="/register">Sign Up</Link>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };

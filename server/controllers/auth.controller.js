@@ -44,43 +44,40 @@ export const Login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // CHECK IF THE USER EXISTS
     const user = await prisma.user.findUnique({
       where: { username },
     });
 
-    if (!user) return res.status(400).json({ message: "Invalid Credentials!" });
+    if (!user) return res.status(401).json({ message: "Invalid Credentials!" });
 
-    // CHECK IF THE PASSWORD IS CORRECT
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
     if (!isPasswordValid)
-      return res.status(400).json({ message: "Invalid Credentials!" });
+      return res.status(401).json({ message: "Invalid Credentials!" });
 
-    // GENERATE JWT TOKEN AND SEND TO THE USER
-    const age = 1000 * 60 * 60 * 24 * 7; // Token expires in 7 days
+    // Create a JWT token
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "7d", // Token expires in 7 days
+    });
 
-    const token = jwt.sign(
-      {
+    // Set the token in the cookie
+    res.cookie("token", token, {
+      httpOnly: true, // Can't access cookie via JavaScript
+      secure: false, // Set to true in production (requires HTTPS)
+      maxAge: 1000 * 60 * 60 * 24 * 7, // Expires in 7 days
+    });
+
+    // Respond with user data and token
+    res.status(200).json({
+      message: "Login successful",
+      user: {
         id: user.id,
-        isAdmin: false,
+        username: user.username,
       },
-      process.env.JWT_SECRET, // Fixed to match .env key
-      { expiresIn: age }
-    );
-
-    const { password: userPassword, ...userInfo } = user;
-
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        maxAge: age,
-      })
-      .status(200)
-      .json(userInfo);
+      token, // You can also include the token here if you want to store it in localStorage
+    });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to login!" });
+    res.status(500).json({ message: "Failed to login" });
   }
 };
 

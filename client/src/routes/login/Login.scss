@@ -4,9 +4,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+.container {
+  width: 1366px;
+}
 
 body {
   font-family: Arial, sans-serif;
+}
+form {
+  padding: 0; // Avoid affecting global nav spacing
+}
+
+.signup-logo {
+  margin: 0 auto;
+  display: block; // Center the logo without affecting nav alignment
 }
 
 .container {
