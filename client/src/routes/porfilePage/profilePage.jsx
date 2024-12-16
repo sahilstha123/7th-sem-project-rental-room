@@ -3,8 +3,23 @@ import Anil from "../../assets/anil.jpg";
 import List from "../../components/list/List";
 import "./profilePage.scss";
 import Chat from "../../components/chat/Chat";
+import apiRequest from "../../lib/apiRequest";
+import NWbutton from "../../components/button/NWbutton";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await apiRequest.post("/auth/Logout");
+      localStorage.removeItem("user");
+      navigate("/");
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  };
+
   return (
     <div className="profilePage">
       <div className="details">
@@ -15,7 +30,7 @@ const ProfilePage = () => {
           </div>
           <div className="info">
             <span>
-              Avatar: <img src={Anil} alt="" />{" "}
+              Avatar: <img src={Anil} alt="User Avatar" />{" "}
             </span>
             <span>
               Username: <b> Anil Rai</b>
@@ -23,6 +38,19 @@ const ProfilePage = () => {
             <span>
               Email : <b> admin@gmail.com</b>
             </span>
+            <NWbutton
+              style={{
+                border: "none",
+                width: "100px",
+                backgroundColor: "#c82918",
+                color: "white",
+                padding: "10px 20px",
+                cursor: "pointer",
+              }}
+              onClick={handleLogout}
+            >
+              Logout
+            </NWbutton>
           </div>
           <div className="title">
             <h1>My List</h1>
