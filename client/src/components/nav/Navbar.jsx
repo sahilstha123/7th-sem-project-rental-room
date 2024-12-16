@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 import menu from "../../assets/menu.png";
 import NWbutton from "../button/NWbutton";
 import { Link, useNavigate } from "react-router-dom";
-import Anil from "../../assets/anil.jpg";
+// import Anil from "../../assets/anil.jpg";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false); // Menu toggle state
@@ -30,7 +30,7 @@ export const Navbar = () => {
         <Link to="/contact">Contact</Link>
       </div>
       <div className="right">
-        {user ? (
+        {/* {user ? (
           <div className="user">
             <img src={Anil} alt="" />
             <span>Anil Rai</span>
@@ -39,16 +39,29 @@ export const Navbar = () => {
               <span>Profile</span>
             </Link>
           </div>
-        ) : (
-          <>
-            <NWbutton onClick={handleLogin} className="signup">
-              Login
+        ) : ( */}
+        <>
+          <NWbutton
+            onClick={handleLogin}
+            className="signup"
+            style={{
+              cursor: "pointer",
+            }}
+          >
+            Login
+          </NWbutton>
+          <Link to="/register">
+            <NWbutton
+              className="signup"
+              style={{
+                cursor: "pointer",
+              }}
+            >
+              Signup
             </NWbutton>
-            <Link to="/register">
-              <NWbutton className="signup">Signup</NWbutton>
-            </Link>
-          </>
-        )}
+          </Link>
+        </>
+        {/* )} */}
         <div className="menuIcon">
           <img src={menu} alt="Menu" onClick={() => setOpen((prev) => !prev)} />
         </div>
