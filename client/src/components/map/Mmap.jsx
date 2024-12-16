@@ -6,7 +6,7 @@ import Pin from "../pin/Pin";
 function Map({ items }) {
   return (
     <MapContainer
-      center={[52.4797, -1.90269]}
+      center={[28.3949, 84.124]} // Centered on Nepal (Kathmandu coordinates)
       zoom={7}
       scrollWheelZoom={false}
       className="map"
