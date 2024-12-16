@@ -7,7 +7,7 @@ export const Singlepage = () => {
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          <Slider images={singlePostData.image} />
+          <Slider images={singlePostData.images} />
           <div className="info">
             <div className="top">
               <div className="post">
@@ -23,7 +23,7 @@ export const Singlepage = () => {
                 <span>{userData.name}</span>
               </div>
             </div>
-            <div className="bottom"></div>
+            <div className="bottom">{singlePostData.description}</div>
           </div>
         </div>
       </div>
