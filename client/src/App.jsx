@@ -10,7 +10,7 @@ import { Singlepage } from "./routes/SinglePage/Singlepage";
 import Register from "./routes/Register/Register";
 import Login from "./routes/login/Login";
 import Layout from "./routes/layout/Layout";
-// import ProfilePage from "./routes/porfilePage/profilePage";
+import ProfilePage from "./routes/porfilePage/profilePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,10 +38,10 @@ function App() {
           path: "/login",
           element: <Login />,
         },
-        // {
-        //   path: "/profile",
-        //   element: <ProfilePage />,
-        // },
+        {
+          path: "/profile",
+          element: <ProfilePage />,
+        },
       ],
     },
   ]);

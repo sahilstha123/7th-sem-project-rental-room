@@ -53,17 +53,17 @@ export const Login = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid)
       return res.status(401).json({ message: "Invalid Credentials!" });
-
+    const age = 1000 * 60 * 60 * 24 * 7; // Expires in 7 days
     // Create a JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "7d", // Token expires in 7 days
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: age, // Token expires in 7 days
     });
 
     // Set the token in the cookie
     res.cookie("token", token, {
       httpOnly: true, // Can't access cookie via JavaScript
       secure: false, // Set to true in production (requires HTTPS)
-      maxAge: 1000 * 60 * 60 * 24 * 7, // Expires in 7 days
+      maxAge: age,
     });
 
     // Respond with user data and token

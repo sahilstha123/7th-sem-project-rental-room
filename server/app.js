@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import postRoutes from "./routes/post.route.js";
 import authRoutes from "./routes/auth.route.js";
 import testRoutes from "./routes/test.route.js";
+
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 // Define routes
 app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
+// Register the routes
 app.use("/api/test", testRoutes);
 // Start the server
 app.listen(8000, () => {
