@@ -1,43 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.scss";
 import NWbutton from "../../components/button/NWbutton";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import Logo from "../../assets/logo.png";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+
+  const { updateUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    const formData = new FormData(e.target);
-    const username = formData.get("username");
-    const password = formData.get("password");
 
     try {
-      const res = await apiRequest.post(
-        "/auth/login",
-        { username, password },
-        {
-          withCredentials: true, // Allow cookies to be sent with requests
-        }
-      );
-      localStorage.setItem("user", JSON.stringify(res.data));
-      navigate("/"); // Redirect after successful login
-    } catch (error) {
-      setError(error.response.data.message);
+      const res = await apiRequest.post("/auth/login", {
+        username,
+        password,
+      });
+
+      updateUser(res.data);
+
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data.message);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -47,18 +44,22 @@ const Login = () => {
         <form onSubmit={handleOnSubmit}>
           <div className="input-group">
             <div className="input-field">
-              <input name="username" type="text" placeholder="Username" />
+              <input
+                name="username"
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className="input-field">
               <input
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <i
-                onClick={togglePasswordVisibility}
-                className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
-              ></i>
             </div>
           </div>
           {error && <p className="error">{error}</p>}

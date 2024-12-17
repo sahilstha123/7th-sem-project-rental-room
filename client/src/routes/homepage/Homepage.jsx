@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./homepage.scss";
 import Home from "../../assets/Home.jpg"; // Ensure the path to the image is correct
 import { SearchBar } from "../../components/searchbar/SearchBar";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Homepage = () => {
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return (
     <div className="homePage">
       <div className="wrapper">

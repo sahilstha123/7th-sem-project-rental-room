@@ -9,8 +9,9 @@ import "./routes/layout/layout.scss";
 import { Singlepage } from "./routes/SinglePage/Singlepage";
 import Register from "./routes/Register/Register";
 import Login from "./routes/login/Login";
-import Layout from "./routes/layout/Layout";
+import { Layout, RequireAuth } from "./routes/layout/Layout";
 import ProfilePage from "./routes/porfilePage/profilePage";
+import { ProfileUpdatePage } from "./routes/ProfileUpdatePage/ProfileUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,9 +39,19 @@ function App() {
           path: "/login",
           element: <Login />,
         },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuth />,
+      children: [
         {
           path: "/profile",
           element: <ProfilePage />,
+        },
+        {
+          path: "/profile/update",
+          element: <ProfileUpdatePage />,
         },
       ],
     },
