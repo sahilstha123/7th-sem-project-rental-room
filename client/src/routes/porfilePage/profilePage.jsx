@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Anil from "../../assets/anil.jpg";
 import List from "../../components/list/List";
 import "./profilePage.scss";
 import Chat from "../../components/chat/Chat";
 import apiRequest from "../../lib/apiRequest";
 import NWbutton from "../../components/button/NWbutton";
-import { useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
+  // const data = useLoaderData();
+  const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await apiRequest.post("/auth/Logout");
-      localStorage.removeItem("user");
+      await apiRequest.post("/auth/logout");
+      updateUser(null);
       navigate("/");
     } catch (err) {
-      console.error("Logout failed", err);
+      console.log(err);
     }
   };
 
@@ -26,17 +29,23 @@ const ProfilePage = () => {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to="/profile/update">
+              <button>Update Profile</button>
+            </Link>
           </div>
           <div className="info">
             <span>
-              Avatar: <img src={Anil} alt="User Avatar" />{" "}
+              Avatar:{" "}
+              <img
+                src={currentUser.avatar || "noavatar.jpg"}
+                alt="User Avatar"
+              />{" "}
             </span>
             <span>
-              Username: <b> Anil Rai</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              Email : <b> admin@gmail.com</b>
+              Email : <b>{currentUser.email}</b>
             </span>
             <NWbutton
               style={{
