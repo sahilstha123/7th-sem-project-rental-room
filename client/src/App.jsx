@@ -40,13 +40,8 @@ function App() {
         },
         {
           path: "/profile",
-<<<<<<< HEAD
           element: <ProfilePage />,
         },
-=======
-          element: <ProfilePage />
-        }
->>>>>>> 2061da3d9a997083a7a707046c1f90edcc7cbb23
       ],
     },
   ]);

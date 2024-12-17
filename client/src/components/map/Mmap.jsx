@@ -4,12 +4,20 @@ import "leaflet/dist/leaflet.css";
 import Pin from "../pin/Pin";
 
 function Map({ items }) {
+  // Define the boundaries for Kathmandu
+  const kathmanduBounds = [
+    [27.65, 85.15], // Southwest corner
+    [27.8, 85.4], // Northeast corner
+  ];
+
   return (
     <MapContainer
-      center={[28.3949, 84.124]} // Centered on Nepal
-      zoom={7}
-      scrollWheelZoom={true} // Allows scrolling to zoom
+      center={[27.7172, 85.324]} // Center of Kathmandu
+      zoom={12} // Appropriate zoom level for Kathmandu
+      scrollWheelZoom={true}
       className="map"
+      maxBounds={kathmanduBounds} // Restrict map bounds to Kathmandu
+      maxBoundsViscosity={1.0} // Sticky effect on map bounds
     >
       {/* OpenStreetMap Tile Layer */}
       <TileLayer
