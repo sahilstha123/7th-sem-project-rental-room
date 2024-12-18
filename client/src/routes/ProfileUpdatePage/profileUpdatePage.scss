@@ -18,19 +18,22 @@
         gap: 5px;
 
         label {
+          font-size: large;
+          font-weight: 400px;
         }
 
         input {
           padding: 20px;
           border-radius: 5px;
-          border: 1px solid gray;
+          border: none;
+          background-color: rgba(128, 128, 128, 0.305);
         }
       }
       button {
         padding: 20px;
         border-radius: 5px;
         border: none;
-        background-color: teal;
+        background-color: #3d4785;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -51,6 +54,14 @@
       width: 50%;
       object-fit: cover;
       height: 40%;
+    }
+    .cloudinary-button {
+      background-color: #c82918;
+      border: none;
+      transition: all ease 1s;
+    }
+    &:hover {
+      scale: 1.5s;
     }
   }
 }
