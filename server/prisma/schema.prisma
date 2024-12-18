@@ -29,8 +29,8 @@ model Post {
  address        String
  city String
  bedroom Int
- latitude String
- longitude String
+ latitude Float
+ longitude Float
  property Property
  createdAt DateTime @default(now())
  user User @relation(fields: [userId],references: [id])

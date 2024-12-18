@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma";
+import prisma from "../lib/prisma.js";
 export const getPosts = async (req, res) => {
   try {
     const posts = await prisma.post.findMany();
@@ -9,12 +9,12 @@ export const getPosts = async (req, res) => {
   }
 };
 export const getPost = async (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
   try {
     const post = await prisma.post.findUnique({
       where: { id },
     });
-    res.status(200).json();
+    res.status(200).json(post);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to get posts" });
