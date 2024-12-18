@@ -1,12 +1,16 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import UploadWidget from "../../components/uploadWidget/UploadWidget";
+import { useContext, useState } from "react";
 import "./profileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
-export const ProfileUpdatePage = () => {
+import apiRequest from "../../lib/apiRequest";
+import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../components/uploadwidget/UploadWidget";
+
+function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState([]);
+  const [avatar, setAvatar] = useState(
+    currentUser.avatar ? [currentUser.avatar] : []
+  );
 
   const navigate = useNavigate();
 
@@ -30,6 +34,7 @@ export const ProfileUpdatePage = () => {
       setError(err.response.data.message);
     }
   };
+
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
@@ -63,21 +68,23 @@ export const ProfileUpdatePage = () => {
       </div>
       <div className="sideContainer">
         <img
-          src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
+          src={avatar || currentUser.avatar || "/noavatar.jpg"}
           alt=""
           className="avatar"
         />
-        {/* <UploadWidget
+        <UploadWidget
           uwConfig={{
-            cloudName: "lamadev",
-            uploadPreset: "estate",
+            cloudName: "dvbjwkxn1",
+            uploadPreset: "smart stay",
             multiple: false,
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
           setState={setAvatar}
-        /> */}
+        />
       </div>
     </div>
   );
-};
+}
+
+export default ProfileUpdatePage;

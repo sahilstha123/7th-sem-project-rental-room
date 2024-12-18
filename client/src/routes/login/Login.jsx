@@ -16,20 +16,18 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  // In Login component
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      const res = await apiRequest.post("/auth/login", {
-        username,
-        password,
-      });
+      const res = await apiRequest.post("/auth/login", { username, password });
 
-      updateUser(res.data);
+      updateUser(res.data); // Update context with user data after successful login
 
-      navigate("/");
+      navigate("/"); // Navigate to the home page or profile page
     } catch (err) {
       setError(err.response.data.message);
     } finally {
