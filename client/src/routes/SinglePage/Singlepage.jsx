@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./Singlepage.scss";
 import { Slider } from "../../components/slider/Slider";
 import { singlePostData } from "../../lib/dummydata";
 import Mmap from "../../components/map/Mmap";
-import { useLoaderData } from "react-router-dom";
-
+import { redirect, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
 export const Singlepage = () => {
-  const post = useLoaderData();
+  const post = useLoaderData() || {};
+
+  const [saved, setSaved] = useState(post.isSaved);
+  const { currentUser } = useContext(AuthContext);
   console.log(post);
 
   const sendMessage = () => {
     console.log("Message sent");
   };
 
-  const savePlace = () => {
-    console.log("Place saved");
+  const savePlace = async () => {
+    setSaved((prev) => !prev);
+    if (!currentUser) {
+      navigate("/login");
+      return; // Prevent further execution
+    }
+    try {
+      await apiRequest.post("/users/save", { postId: post.id });
+    } catch (err) {
+      console.log(err);
+      setSaved((prev) => !prev);
+    }
   };
 
   // Ensure that latitude and longitude are available
@@ -25,7 +39,7 @@ export const Singlepage = () => {
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          <Slider images={post?.postData.images || []} />
+          <Slider images={post?.postData?.images || []} />
           <div className="info">
             <div className="top">
               <div className="post">
@@ -41,7 +55,9 @@ export const Singlepage = () => {
                 <span>{post?.user.username}</span>
               </div>
             </div>
-            <div className="bottom">{post?.postDetail.desc}</div>
+            <div className="bottom">
+              {post?.postDetail?.desc ?? "No description available."}
+            </div>
           </div>
         </div>
       </div>
@@ -99,9 +115,9 @@ export const Singlepage = () => {
               <div className="featureText">
                 <span>School</span>
                 <p>
-                  {post?.postDetail.school > 999
-                    ? post?.postDetail.school / 1000 + "km"
-                    : post?.postDetail.school + "m"}{" "}
+                  {post?.postDetail?.school > 999
+                    ? `${(post?.postDetail?.school / 1000).toFixed(1)} km`
+                    : `${post?.postDetail?.school} m`}{" "}
                   away
                 </p>
               </div>
@@ -111,9 +127,9 @@ export const Singlepage = () => {
               <div className="featureText">
                 <span>Bus Stop</span>
                 <p>
-                  {post?.postDetail.bus > 999
-                    ? post?.postDetail.bus / 1000 + "km"
-                    : post?.postDetail.bus + "m"}{" "}
+                  {post?.postDetail?.bus > 999
+                    ? `${(post?.postDetail?.bus / 1000).toFixed(1)} km`
+                    : `${post?.postDetail?.bus} m`}{" "}
                   away
                 </p>
               </div>
@@ -135,9 +151,14 @@ export const Singlepage = () => {
               <img src="/chat.png" alt="Chat Icon" />
               Send a Message
             </button>
-            <button onClick={savePlace}>
+            <button
+              onClick={savePlace}
+              style={{
+                backgroundColor: saved ? "#C82918" : "white",
+              }}
+            >
               <img src="/save.png" alt="Save Icon" />
-              Save the Place
+              {saved ? "place Saved" : "Save the Place"}
             </button>
           </div>
         </div>
