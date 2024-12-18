@@ -11,7 +11,7 @@ import Register from "./routes/Register/Register";
 import Login from "./routes/login/Login";
 import { Layout, RequireAuth } from "./routes/layout/Layout";
 import ProfilePage from "./routes/porfilePage/profilePage";
-import { ProfileUpdatePage } from "./routes/ProfileUpdatePage/ProfileUpdatePage";
+import ProfileUpdatePage from "./routes/ProfileUpdatePage/ProfileUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
