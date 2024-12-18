@@ -10,7 +10,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false); // Menu toggle state
   const nav = useNavigate();
   const { currentUser } = useContext(AuthContext);
-
+  console.log("current auth", currentUser);
   const handleLogin = () => {
     nav("/login"); // Redirect to login page when clicked
   };
@@ -32,11 +32,11 @@ export const Navbar = () => {
         {currentUser ? (
           <div className="user">
             <img
-              src={currentUser.avatar || "/noavatar.jpg"}
+              src={currentUser?.user.avatar || "/noavatar.jpg"}
               alt="Avatar"
               className="avatar"
             />
-            <span>{currentUser.username}</span> {/* Display username */}
+            <span>{currentUser?.user.username}</span> {/* Display username */}
             <Link to="/profile" className="profile">
               <div className="notification">3</div>
               <span>Profile</span>

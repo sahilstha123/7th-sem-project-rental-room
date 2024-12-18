@@ -76,6 +76,7 @@ export const Login = async (req, res) => {
       user: {
         id: user.id,
         username: user.username,
+        email: user.email,
       },
       token, // You can also include the token here if you want to store it in localStorage
     });
