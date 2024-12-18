@@ -127,6 +127,8 @@
     "qs": "^6.13.0",
     "range-parser": "^1.2.1",
     "raw-body": "^2.5.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "readable-stream": "^3.6.2",
     "readdirp": "^3.6.0",
     "rimraf": "^3.0.2",

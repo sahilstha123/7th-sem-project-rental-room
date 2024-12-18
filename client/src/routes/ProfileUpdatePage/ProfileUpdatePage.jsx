@@ -3,7 +3,7 @@ import "./profileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
-import UploadWidget from "../../components/uploadwidget/UploadWidget";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -17,17 +17,33 @@ function ProfileUpdatePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    console.log(formData);
 
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.put(`/users/${currentUser.id}`, {
+      const res = await apiRequest.put(`/users/${currentUser.user.id}`, {
         username,
         email,
         password,
         avatar: avatar[0],
       });
-      updateUser(res.data);
+      console.log({ res });
+      console.log("body", {
+        username,
+        email,
+        password,
+        avatar: avatar[0],
+      });
+
+      updateUser({
+        user: {
+          id: res.data.id,
+          username: res.data.username,
+          email: res.data.email,
+          avatar: res.data.avatar,
+        },
+      });
       navigate("/profile");
     } catch (err) {
       console.log(err);
@@ -46,7 +62,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
-              defaultValue={currentUser.username}
+              defaultValue={currentUser?.user.username}
             />
           </div>
           <div className="item">
@@ -55,7 +71,7 @@ function ProfileUpdatePage() {
               id="email"
               name="email"
               type="email"
-              defaultValue={currentUser.email}
+              defaultValue={currentUser?.user.email}
             />
           </div>
           <div className="item">
@@ -68,7 +84,7 @@ function ProfileUpdatePage() {
       </div>
       <div className="sideContainer">
         <img
-          src={avatar || currentUser.avatar || "/noavatar.jpg"}
+          src={avatar[0] || currentUser?.user.avatar || "/noavatar.jpg"}
           alt=""
           className="avatar"
         />

@@ -9,6 +9,7 @@ export const listData = [
     address: "Durbar Marg, Kathmandu, Nepal",
     latitude: 27.7105,
     longitude: 85.2853,
+    city: "kathmandu",
   },
   {
     id: 2,

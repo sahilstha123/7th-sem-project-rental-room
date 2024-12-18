@@ -1,23 +1,30 @@
-import React from "react";
-import "./listpage.scss";
-import { listData } from "../../lib/dummydata";
+import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { SearchFilter } from "../../components/searchFilter/SearchFilter";
 import { Card } from "../../components/card/Card";
 import Mmap from "../../components/map/Mmap";
+import "./listpage.scss";
+
 const ListPage = () => {
-  const data = listData;
+  const post = useLoaderData();
+
+  // Check if post is defined and an array before mapping over it
+  if (!post || !Array.isArray(post)) {
+    return <div>No data available</div>;
+  }
+
   return (
     <div className="listPage">
-      <div className="listConatiner">
+      <div className="listContainer">
         <div className="wrapper">
           <SearchFilter />
-          {data.map((item) => (
+          {post.map((item) => (
             <Card key={item.id} item={item} />
           ))}
         </div>
       </div>
       <div className="mapContainer">
-        <Mmap items={data} />
+        <Mmap items={post} />
       </div>
     </div>
   );

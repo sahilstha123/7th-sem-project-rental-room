@@ -37,15 +37,15 @@ const ProfilePage = () => {
             <span>
               Avatar:{" "}
               <img
-                src={currentUser.avatar || "noavatar.jpg"}
+                src={currentUser?.user.avatar || "noavatar.jpg"}
                 alt="User Avatar"
               />{" "}
             </span>
             <span>
-              Username: <b>{currentUser.username}</b>
+              Username: <b>{currentUser?.user.username || ""}</b>
             </span>
             <span>
-              Email : <b>{currentUser.email}</b>
+              Email : <b>{currentUser?.user.email || ""}</b>
             </span>
             <NWbutton
               style={{
@@ -63,7 +63,9 @@ const ProfilePage = () => {
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <Link to="/add">
+              <button>Create New Post</button>
+            </Link>
           </div>
           <List />
           <div className="title">
