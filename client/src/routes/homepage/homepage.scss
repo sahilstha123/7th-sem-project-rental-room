@@ -2,7 +2,7 @@
 
 .homePage {
   display: flex;
-  height: 100vh; /* Ensure the full height of the page is used */
+  height: 100vh;
 
   .wrapper {
     flex: 3; /* Takes 3 parts of the flex container */
@@ -48,7 +48,6 @@
 
   .imgContainer {
     flex: 2; /* Takes 2 parts of the flex container */
-    background-color: blue; /* Just for visibility */
     display: flex;
     align-items: center;
     overflow: hidden; /* Prevents image from overflowing the container */

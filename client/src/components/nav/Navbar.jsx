@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import React, { useContext, useState } from "react";
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
@@ -17,6 +18,10 @@ export const Navbar = () => {
   const handleLogin = () => {
     nav("/login"); // Redirect to login page when clicked
   };
+
+  // useEffect(() => {
+  //   console.log(window.innerWidth);
+  // }, [window]);
 
   return (
     <nav>
@@ -45,6 +50,27 @@ export const Navbar = () => {
               <span>Profile</span>
             </Link>
           </div>
+        ) : ( */}
+        <NWbutton
+          onClick={handleLogin}
+          className="signup"
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </NWbutton>
+        <Link to="/register">
+          <NWbutton
+            className="signup"
+            style={{
+              cursor: "pointer",
+            }}
+          >
+            Signup
+          </NWbutton>
+        </Link>
+        {/* )} */}
         ) : (
           <>
             <NWbutton onClick={handleLogin} className="signup">
@@ -59,12 +85,11 @@ export const Navbar = () => {
           <img src={menu} alt="Menu" onClick={() => setOpen((prev) => !prev)} />
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/agents">Agents</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/login">Sign in</Link>
-          <Link to="/register">Sign Up</Link>
+          <a href="/">Home</a>
+          <a href="/">About</a>
+          <a href="/">Contact</a>
+          <a href="/">Agents</a>
+          <a href="/">Sign up</a>
         </div>
       </div>
     </nav>
