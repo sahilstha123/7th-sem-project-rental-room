@@ -35,6 +35,7 @@ export const NewPostPage = () => {
           balcony: inputs.balcony,
           school: parseInt(inputs.school),
           bus: parseInt(inputs.bus),
+          phoneNumber: parseInt(inputs.phoneNumber),
         },
       });
       navigate("/" + res.data.id);
@@ -68,6 +69,8 @@ export const NewPostPage = () => {
               <input
                 type="number"
                 id="price"
+                min={2000}
+                step={500}
                 name="price"
                 placeholder="Enter price"
                 required
@@ -82,6 +85,17 @@ export const NewPostPage = () => {
                 id="address"
                 name="address"
                 placeholder="Enter address"
+                required
+              />
+            </div>
+            {/* Phone Number Input */}
+            <div className="item">
+              <label htmlFor="phoneNumber">Phone Number</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Enter phone number"
                 required
               />
             </div>
@@ -104,6 +118,7 @@ export const NewPostPage = () => {
               <input
                 type="number"
                 id="bedroom"
+                min={1}
                 name="bedroom"
                 placeholder="Enter number of bedrooms"
                 required
@@ -136,14 +151,12 @@ export const NewPostPage = () => {
 
             {/* Property Type Input */}
             <div className="item">
-              <label htmlFor="property">Property Type</label>
-              <input
-                type="text"
-                id="property"
-                name="property"
-                placeholder="Enter property type"
-                required
-              />
+              <label htmlFor="type">Property</label>
+              <select name="property">
+                <option value="Apartment">Apartment</option>
+                <option value="SingleRoom">Single Room</option>
+                <option value="TwoRoom">Two Room</option>
+              </select>
             </div>
 
             {/* Description Input */}
@@ -165,34 +178,29 @@ export const NewPostPage = () => {
             {/* Parking Input */}
             <div className="item">
               <label htmlFor="parking">Parking</label>
-              <input
-                type="text"
-                id="parking"
-                name="parking"
-                placeholder="Parking availability"
-              />
+
+              <select name="parking">
+                <option value="NotAvailable">Not Available</option>
+                <option value="Available">Available</option>
+              </select>
             </div>
 
             {/* Running Water Input */}
             <div className="item">
               <label htmlFor="runningwater">Running Water</label>
-              <input
-                type="text"
-                id="runningwater"
-                name="runningwater"
-                placeholder="Running water availability"
-              />
+              <select name="runningwater">
+                <option value="NotAvailable">Not Available</option>
+                <option value="Available">Available</option>
+              </select>
             </div>
 
             {/* Balcony Input */}
             <div className="item">
               <label htmlFor="balcony">Balcony</label>
-              <input
-                type="text"
-                id="balcony"
-                name="balcony"
-                placeholder="Balcony availability"
-              />
+              <select name="balcony">
+                <option value="NotAvailable">Not Available</option>
+                <option value="Availabel">Available</option>
+              </select>
             </div>
 
             {/* School Input */}
@@ -213,6 +221,7 @@ export const NewPostPage = () => {
               <input
                 type="number"
                 id="bus"
+                min={1}
                 name="bus"
                 placeholder="Enter distance to bus stop (km)"
                 required

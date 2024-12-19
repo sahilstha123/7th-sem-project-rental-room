@@ -231,3 +231,14 @@
     }
   }
 }
+.phoneNumber {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #888;
+
+  img {
+    width: 20px; // Adjust the width as needed
+    height: 20px; // Adjust the height as needed
+  }
+}
