@@ -5,12 +5,15 @@ import menu from "../../assets/menu.png";
 import NWbutton from "../button/NWbutton";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useNotificationStore } from "../../lib/notificationStore";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false); // Menu toggle state
   const nav = useNavigate();
   const { currentUser } = useContext(AuthContext);
   console.log("current auth", currentUser);
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.fetch);
   const handleLogin = () => {
     nav("/login"); // Redirect to login page when clicked
   };
@@ -38,7 +41,7 @@ export const Navbar = () => {
             />
             <span>{currentUser?.user.username}</span> {/* Display username */}
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
+              {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>
