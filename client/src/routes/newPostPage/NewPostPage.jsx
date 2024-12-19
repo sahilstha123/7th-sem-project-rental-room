@@ -23,15 +23,15 @@ export const NewPostPage = () => {
           address: inputs.address,
           city: inputs.city,
           bedroom: parseInt(inputs.bedroom),
-          latitude: inputs.latitude,
-          longitude: inputs.longitude,
+          latitude: +inputs.latitude,
+          longitude: +inputs.longitude,
           property: inputs.property,
           images: images,
         },
         postDetail: {
           desc: desc, // Using the manual description state
           parking: inputs.parking,
-          runningWater: inputs.runningWater,
+          runningwater: inputs.runningwater,
           balcony: inputs.balcony,
           school: parseInt(inputs.school),
           bus: parseInt(inputs.bus),
@@ -114,7 +114,7 @@ export const NewPostPage = () => {
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
               <input
-                type="number"
+                type="float"
                 id="latitude"
                 name="latitude"
                 placeholder="Enter latitude"
@@ -126,7 +126,7 @@ export const NewPostPage = () => {
             <div className="item">
               <label htmlFor="longitude">Longitude</label>
               <input
-                type="number"
+                type="float"
                 id="longitude"
                 name="longitude"
                 placeholder="Enter longitude"
@@ -175,11 +175,11 @@ export const NewPostPage = () => {
 
             {/* Running Water Input */}
             <div className="item">
-              <label htmlFor="runningWater">Running Water</label>
+              <label htmlFor="runningwater">Running Water</label>
               <input
                 type="text"
-                id="runningWater"
-                name="runningWater"
+                id="runningwater"
+                name="runningwater"
                 placeholder="Running water availability"
               />
             </div>

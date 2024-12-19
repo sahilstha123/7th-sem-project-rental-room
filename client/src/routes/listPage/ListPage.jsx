@@ -7,7 +7,7 @@ import "./listpage.scss";
 
 const ListPage = () => {
   const post = useLoaderData();
-
+  // console.log({ post });
   // Check if post is defined and an array before mapping over it
   if (!post || !Array.isArray(post)) {
     return <div>No data available</div>;

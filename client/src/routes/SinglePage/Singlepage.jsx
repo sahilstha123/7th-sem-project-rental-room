@@ -7,11 +7,11 @@ import { redirect, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 export const Singlepage = () => {
-  const post = useLoaderData() || {};
+  const post = useLoaderData();
 
-  const [saved, setSaved] = useState(post.isSaved);
+  const [saved, setSaved] = useState(post?.isSaved || false);
   const { currentUser } = useContext(AuthContext);
-  console.log(post);
+  console.log({ post });
 
   const sendMessage = () => {
     console.log("Message sent");
@@ -32,23 +32,23 @@ export const Singlepage = () => {
   };
 
   // Ensure that latitude and longitude are available
-  const latitude = post?.postData?.latitude;
-  const longitude = post?.postData?.longitude;
+  const latitude = post?.latitude;
+  const longitude = post?.longitude;
 
   return (
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          <Slider images={post?.postData?.images || []} />
+          <Slider images={post?.images || []} />
           <div className="info">
             <div className="top">
               <div className="post">
-                <h1>{post?.postData.title}</h1>
+                <h1>{post.title}</h1>
                 <div className="address">
                   <img src="/pin.png" alt="Location" />
-                  <span>{post?.postData.address}</span>
+                  <span>{post.address}</span>
                 </div>
-                <div className="price">Npr.{post?.postData.price}</div>
+                <div className="price">Npr.{post.price}</div>
               </div>
               <div className="user">
                 <img src={post?.user.avatar} alt="User Avatar" />

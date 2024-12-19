@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
 import menu from "../../assets/menu.png";
@@ -13,7 +13,12 @@ export const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
   console.log("current auth", currentUser);
   const fetch = useNotificationStore((state) => state.fetch);
-  const number = useNotificationStore((state) => state.fetch);
+  const number = 0;
+
+  useEffect(() => {
+    fetch(); // Fetch notification number when Navbar loads
+  }, []);
+
   const handleLogin = () => {
     nav("/login"); // Redirect to login page when clicked
   };
