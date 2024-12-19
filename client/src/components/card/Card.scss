@@ -1,4 +1,4 @@
-@import "../../responsive.scss";
+@use "../../responsive.scss" as res;
 
 .card {
   display: flex;
@@ -7,7 +7,7 @@
     flex: 2;
     height: 200px;
 
-    @include sm{
+    @include res.sm {
       display: none;
     }
 

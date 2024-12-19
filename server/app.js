@@ -3,6 +3,9 @@ import cookieParser from "cookie-parser";
 import postRoutes from "./routes/post.route.js";
 import authRoutes from "./routes/auth.route.js";
 import testRoutes from "./routes/test.route.js";
+import userRoutes from "./routes/user.route.js";
+import chatRoutes from "./routes/chat.route.js";
+import messageRoutes from "./routes/message.route.js";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -32,6 +35,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
 // Register the routes
 app.use("/api/test", testRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/chats", chatRoutes);
+app.use("/api/messages", messageRoutes);
 // Start the server
 app.listen(8000, () => {
   console.log("Server is running on port 8000");

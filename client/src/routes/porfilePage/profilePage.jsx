@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Anil from "../../assets/anil.jpg";
 import List from "../../components/list/List";
 import "./profilePage.scss";
-import Chat from "../../components/chat/Chat";
+import Chat from "../../components/chat/Chat"; // Make sure Chat component can accept chat data
 import apiRequest from "../../lib/apiRequest";
 import NWbutton from "../../components/button/NWbutton";
-import { useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
+  const data = useLoaderData() || { myPosts: [], savedPosts: [], chats: [] }; // Include chats data
+  const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogout = async () => {
+    setLoading(true);
     try {
-      await apiRequest.post("/auth/Logout");
-      localStorage.removeItem("user");
+      await apiRequest.post("/auth/logout");
+      updateUser(null);
       navigate("/");
     } catch (err) {
-      console.error("Logout failed", err);
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -26,19 +34,26 @@ const ProfilePage = () => {
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to="/profile/update">
+              <button>Update Profile</button>
+            </Link>
           </div>
           <div className="info">
             <span>
-              Avatar: <img src={Anil} alt="User Avatar" />{" "}
+              Avatar:{" "}
+              <img
+                src={currentUser?.user.avatar || "/assets/noavatar.jpg"}
+                alt="User Avatar"
+              />
             </span>
             <span>
-              Username: <b> Anil Rai</b>
+              Username: <b>{currentUser?.user.username || ""}</b>
             </span>
             <span>
-              Email : <b> admin@gmail.com</b>
+              Email : <b>{currentUser?.user.email || ""}</b>
             </span>
             <NWbutton
+              disabled={loading}
               style={{
                 border: "none",
                 width: "100px",
@@ -49,23 +64,29 @@ const ProfilePage = () => {
               }}
               onClick={handleLogout}
             >
-              Logout
+              {loading ? "Logging out..." : "Logout"}
             </NWbutton>
           </div>
+
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <Link to="/add">
+              <button>Create New Post</button>
+            </Link>
           </div>
-          <List />
+          <List posts={data.myPosts} />
+
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <List />
+          <List posts={data.savedPosts} />
         </div>
       </div>
+
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          {/* Pass the chats data to the Chat component */}
+          <Chat chats={data.chats} />
         </div>
       </div>
     </div>
