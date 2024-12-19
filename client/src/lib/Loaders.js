@@ -13,14 +13,20 @@ export const listPageLoader = async ({ request }) => {
   return res.data; // Return the data
 };
 
-// Profile page loader to fetch user profile posts
+// Profile page loader to fetch user profile posts and chats
 export const profilePageLoader = async () => {
   try {
-    const response = await apiRequest("/users/profilePosts"); // Await the API response
-    const { myPosts = [], savedPosts = [] } = response.data; // Destructure API data
-    return { myPosts, savedPosts }; // Return structured data
+    // Fetch posts data
+    const postResponse = await apiRequest("/users/profilePosts"); // Await the API response for posts
+    const { myPosts = [], savedPosts = [] } = postResponse.data; // Destructure API data
+
+    // Fetch chats data
+    const chatResponse = await apiRequest("/users/chats"); // Await the API response for chats
+    const chats = chatResponse.data || []; // Default to an empty array if no data
+
+    return { myPosts, savedPosts, chats }; // Return structured data including chats
   } catch (error) {
-    console.error("Failed to load profile posts:", error);
-    return { myPosts: [], savedPosts: [] }; // Fallback to empty lists in case of an error
+    console.error("Failed to load profile posts or chats:", error);
+    return { myPosts: [], savedPosts: [], chats: [] }; // Fallback to empty lists in case of an error
   }
 };

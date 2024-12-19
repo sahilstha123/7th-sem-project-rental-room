@@ -1,23 +1,19 @@
 import React, { useState } from "react";
 import "./newPostPage.scss";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 
 export const NewPostPage = () => {
-  const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
-
+  const [desc, setDesc] = useState(""); // State to handle description input
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
-    console.log(inputs);
 
     try {
       const res = await apiRequest.post("/post", {
@@ -33,7 +29,7 @@ export const NewPostPage = () => {
           images: images,
         },
         postDetail: {
-          desc: value,
+          desc: desc, // Using the manual description state
           parking: inputs.parking,
           runningWater: inputs.runningWater,
           balcony: inputs.balcony,
@@ -44,7 +40,7 @@ export const NewPostPage = () => {
       navigate("/" + res.data.id);
     } catch (err) {
       console.log(err);
-      setError(error);
+      setError(err.message);
     }
   };
 
@@ -54,85 +50,173 @@ export const NewPostPage = () => {
         <h1>Add New Post</h1>
         <div className="wrapper">
           <form onSubmit={handleSubmit}>
+            {/* Title Input */}
             <div className="item">
               <label htmlFor="title">Title</label>
-              <input id="title" name="title" type="text" />
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter post title"
+                required
+              />
             </div>
+
+            {/* Price Input */}
             <div className="item">
               <label htmlFor="price">Price</label>
               <input
+                type="number"
                 id="price"
                 name="price"
-                min={2000}
-                max={40000}
-                type="number"
+                placeholder="Enter price"
+                required
               />
             </div>
+
+            {/* Address Input */}
             <div className="item">
               <label htmlFor="address">Address</label>
-              <input id="address" name="address" type="text" />
-            </div>
-            <div className="item description">
-              <label htmlFor="desc">Description</label>
-              <ReactQuill theme="snow" onChange={setValue} value={value} />
-            </div>
-            <div className="item">
-              <label htmlFor="city">City</label>
-              <input id="city" name="city" type="text" />
-            </div>
-            <div className="item">
-              <label htmlFor="bedroom">Bedroom Number</label>
-              <input min={1} id="bedroom" name="bedroom" type="number" />
-            </div>
-            <div className="item">
-              <label htmlFor="latitude">Latitude</label>
-              <input id="latitude" name="latitude" type="text" />
-            </div>
-            <div className="item">
-              <label htmlFor="longitude">Longitude</label>
-              <input id="longitude" name="longitude" type="text" />
-            </div>
-            <div className="item">
-              <label htmlFor="property">Property</label>
-              <select name="property">
-                <option value="apartment">Apartment</option>
-                <option value="SingleRoom">Single Room</option>
-                <option value="TwoRoom">Two Room</option>
-              </select>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Enter address"
+                required
+              />
             </div>
 
+            {/* City Input */}
             <div className="item">
-              <label htmlFor="parking">Parking Policy</label>
-              <select name="parking">
-                <option value="owner">Owner is responsible</option>
-                <option value="tenant">Tenant is responsible</option>
-                <option value="shared">Shared</option>
-              </select>
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Enter city"
+                required
+              />
             </div>
+
+            {/* Bedroom Input */}
             <div className="item">
-              <label htmlFor="runningWater">Running Water Policy</label>
-              <select name="runningWater">
-                <option value="available">Available</option>
-                <option value="not-available">Not Available</option>
-              </select>
+              <label htmlFor="bedroom">Bedroom</label>
+              <input
+                type="number"
+                id="bedroom"
+                name="bedroom"
+                placeholder="Enter number of bedrooms"
+                required
+              />
             </div>
+
+            {/* Latitude Input */}
+            <div className="item">
+              <label htmlFor="latitude">Latitude</label>
+              <input
+                type="number"
+                id="latitude"
+                name="latitude"
+                placeholder="Enter latitude"
+                required
+              />
+            </div>
+
+            {/* Longitude Input */}
+            <div className="item">
+              <label htmlFor="longitude">Longitude</label>
+              <input
+                type="number"
+                id="longitude"
+                name="longitude"
+                placeholder="Enter longitude"
+                required
+              />
+            </div>
+
+            {/* Property Type Input */}
+            <div className="item">
+              <label htmlFor="property">Property Type</label>
+              <input
+                type="text"
+                id="property"
+                name="property"
+                placeholder="Enter property type"
+                required
+              />
+            </div>
+
+            {/* Description Input */}
+            <div className="item description">
+              <label htmlFor="desc">Description</label>
+              <textarea
+                id="desc"
+                name="desc"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                placeholder="Write the description here"
+                required
+                style={{
+                  height: "300px",
+                }}
+              />
+            </div>
+
+            {/* Parking Input */}
+            <div className="item">
+              <label htmlFor="parking">Parking</label>
+              <input
+                type="text"
+                id="parking"
+                name="parking"
+                placeholder="Parking availability"
+              />
+            </div>
+
+            {/* Running Water Input */}
+            <div className="item">
+              <label htmlFor="runningWater">Running Water</label>
+              <input
+                type="text"
+                id="runningWater"
+                name="runningWater"
+                placeholder="Running water availability"
+              />
+            </div>
+
+            {/* Balcony Input */}
             <div className="item">
               <label htmlFor="balcony">Balcony</label>
               <input
+                type="text"
                 id="balcony"
                 name="balcony"
-                type="text"
-                placeholder="Balcony information"
+                placeholder="Balcony availability"
               />
             </div>
 
+            {/* School Input */}
             <div className="item">
-              <label htmlFor="school">School</label>
-              <input min={0} id="school" name="school" type="number" />
+              <label htmlFor="school">School Distance</label>
+              <input
+                type="number"
+                id="school"
+                name="school"
+                placeholder="Enter distance to school (km)"
+                required
+              />
             </div>
+
+            {/* Bus Input */}
             <div className="item">
-              <label htmlFor="bus">Bus Stop</label>
-              <input min={0} id="bus" name="bus" type="number" />
+              <label htmlFor="bus">Bus Distance</label>
+              <input
+                type="number"
+                id="bus"
+                name="bus"
+                placeholder="Enter distance to bus stop (km)"
+                required
+              />
             </div>
 
             <button className="sendButton">Add</button>
@@ -140,6 +224,8 @@ export const NewPostPage = () => {
           </form>
         </div>
       </div>
+
+      {/* Image Upload Section */}
       <div className="sideContainer">
         {images.map((image, index) => (
           <img src={image} key={index} alt="" />

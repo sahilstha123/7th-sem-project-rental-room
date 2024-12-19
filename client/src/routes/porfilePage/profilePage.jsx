@@ -2,14 +2,14 @@ import React, { useContext, useState } from "react";
 import Anil from "../../assets/anil.jpg";
 import List from "../../components/list/List";
 import "./profilePage.scss";
-import Chat from "../../components/chat/Chat";
+import Chat from "../../components/chat/Chat"; // Make sure Chat component can accept chat data
 import apiRequest from "../../lib/apiRequest";
 import NWbutton from "../../components/button/NWbutton";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
-  const data = useLoaderData() || { myPosts: [], savedPosts: [] };
+  const data = useLoaderData() || { myPosts: [], savedPosts: [], chats: [] }; // Include chats data
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -85,7 +85,8 @@ const ProfilePage = () => {
 
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          {/* Pass the chats data to the Chat component */}
+          <Chat chats={data.chats} />
         </div>
       </div>
     </div>
