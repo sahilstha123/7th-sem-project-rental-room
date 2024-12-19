@@ -19,6 +19,7 @@ model Post {
   latitude   Float?   // Optional field
   longitude  Float?   // Optional field
   property   Property
+  
   createdAt  DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id])
   userId     String   @db.ObjectId
@@ -37,12 +38,13 @@ enum Property {
 model PostDetail {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   desc         String
-  parking      String?  // Optional field
-  runningwater String?  // Optional field
-  balcony      String?  // Optional field
-  school       Int?     // Optional field
-  bus          Int?     // Optional field
-  post         Post?    @relation(fields: [postId], references: [id]) // Change to optional
+  parking      String?
+  runningwater String?
+  balcony      String?
+  school       Int?
+  bus          Int?
+  phoneNumber  Int?     // Make this nullable
+  post         Post?    @relation(fields: [postId], references: [id])
   postId       String   @db.ObjectId @unique
 }
 model SavedPost{

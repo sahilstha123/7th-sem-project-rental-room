@@ -4,16 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import Logo from "../../assets/logo.png";
 import NWbutton from "../../components/button/NWbutton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faEyeSlash,
+  faExclamationTriangle,
+} from "@fortawesome/free-solid-svg-icons"; // Added triangle icon
 
 function Register() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false); // State for password visibility
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State for confirm password visibility
   const navigate = useNavigate();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
+    setError(""); // Reset error
 
     const formData = new FormData(e.target);
     const username = formData.get("username");
@@ -21,8 +29,27 @@ function Register() {
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
 
+    // Email validation regex (basic format validation)
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+      setError("Invalid email."); // Shortened error message
+      setIsLoading(false);
+      return;
+    }
+
+    // Password validation: at least one uppercase letter, one lowercase letter, one number, and one special character
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must include uppercase, lowercase, number, and special character." // Shortened error message
+      );
+      setIsLoading(false);
+      return;
+    }
+
     if (password !== confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Passwords don't match."); // Shortened error message
       setIsLoading(false);
       return;
     }
@@ -49,10 +76,17 @@ function Register() {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
+
   return (
     <div className="register">
       <div className="custom-form-container">
-        {/* Logo and Title */}
         <img src={Logo} alt="Logo" className="signup-logo" />
 
         {/* Sign Up Form */}
@@ -78,29 +112,48 @@ function Register() {
             />
           </div>
 
-          <div>
+          <div className="password-container">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"} // Toggle password visibility
               name="password"
               className="form-control input-field"
               placeholder="Password"
               aria-label="Password"
               required
             />
+            <FontAwesomeIcon
+              icon={passwordVisible ? faEyeSlash : faEye}
+              className="password-toggle-icon"
+              onClick={togglePasswordVisibility} // Toggle password visibility
+            />
           </div>
 
-          <div>
+          <div className="password-container">
             <input
-              type="password"
+              type={confirmPasswordVisible ? "text" : "password"} // Toggle confirm password visibility
               name="confirmPassword"
               className="form-control input-field"
               placeholder="Confirm Password"
               aria-label="Confirm Password"
               required
             />
+            <FontAwesomeIcon
+              icon={confirmPasswordVisible ? faEyeSlash : faEye}
+              className="password-toggle-icon"
+              onClick={toggleConfirmPasswordVisibility} // Toggle confirm password visibility
+            />
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <div className="error-message">
+              <FontAwesomeIcon
+                icon={faExclamationTriangle}
+                size="lg"
+                className="error-icon"
+              />
+              <span className="error-text">{error}</span>
+            </div>
+          )}
 
           <NWbutton type="submit" className="signup-btn" disabled={isLoading}>
             {isLoading ? "Loading..." : "Sign Up"}

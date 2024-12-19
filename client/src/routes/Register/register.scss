@@ -17,7 +17,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-.register{
+.register {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +60,7 @@ h3 {
   background-color: var(--primary-color);
   color: #ffffff;
   padding: 0.8rem;
+  margin-top: 20px;
   border: none;
   border-radius: var(--button-radius);
   cursor: pointer;
@@ -87,6 +88,39 @@ h3 {
   text-decoration: underline;
 }
 
+.password-container {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust this value as needed */
+  transform: translateY(-50%);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem;
+  padding-right: 2.5rem; /* Ensure there's space for the eye icon */
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: var(--button-radius);
+  background-color: var(--input-background);
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--hover-border-color);
+}
+
+.password-toggle-icon {
+  color: var(--text-color);
+}
+
 .auth-options {
   margin-top: 1.5rem;
   display: flex;
@@ -103,25 +137,35 @@ h3 {
   transform: scale(1.1);
 }
 
-.position-relative {
-  position: relative;
+.error-message {
+  background-color: #f8d7da; /* Light red background */
+  color: #721c24; /* Dark red text color */
+  border: 1px solid #f5c6cb; /* Light red border */
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: var(--button-radius);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
-.position-relative .icon {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  color: var(--text-color);
-  cursor: pointer;
+.error-message i {
+  color: #721c24; /* Dark red color for the icon */
+}
+
+.error-message .error-text {
+  font-weight: 200;
 }
 
 @media (max-width: 576px) {
   .custom-form-container {
-      max-width: 90%;
-      padding: 1.5rem;
+    max-width: 90%;
+    padding: 1.5rem;
   }
 
   .signup-logo {
-      width: 120px;
-  }}
+    width: 120px;
+  }
+}

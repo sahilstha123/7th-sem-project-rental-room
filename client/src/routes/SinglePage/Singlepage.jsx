@@ -48,6 +48,14 @@ export const Singlepage = () => {
                   <img src="/pin.png" alt="Location" />
                   <span>{post.address}</span>
                 </div>
+                {/* Add Phone Number below Address */}
+                <div className="phoneNumber">
+                  <img src="/phone.png" alt="Phone Icon" />
+                  <span>
+                    {post?.postDetail?.phoneNumber ??
+                      "Phone number unavailable"}
+                  </span>
+                </div>
                 <div className="price">Npr.{post.price}</div>
               </div>
               <div className="user">
