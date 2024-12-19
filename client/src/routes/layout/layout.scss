@@ -1,6 +1,6 @@
 @use "../../responsive.scss" as res;
 .layout {
-  height: 100vh;
+  height: 100%;
   width: 1366px;
   margin-left: auto;
   margin-right: auto;
@@ -24,8 +24,8 @@
     max-width: 640px;
   }
 
-  .content {
-    // flex: 1;
-    height: calc(100vh - 100px);
-  }
+  // .content {
+  //   // flex: 1;
+  //   height: calc(100vh - 100px);
+  // }
 }

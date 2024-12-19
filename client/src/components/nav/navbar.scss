@@ -6,138 +6,146 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: #f8fafc;
-}
 
-a {
-  transition: all 0.4s ease;
+  a {
+    transition: all 0.4s ease;
 
-  @include res.sm {
-    display: none;
-  }
-
-  &:hover {
-    scale: 1.05;
-  }
-}
-
-.left {
-  flex: 3;
-  display: flex;
-  align-items: center;
-  gap: 50px;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  span {
-    @include res.md {
+    @include res.sm {
       display: none;
     }
 
-    @include res.sm {
-      display: initial;
+    &:hover {
+      scale: 1.05;
     }
   }
-}
 
-.logo img {
-  width: 70px;
-}
-
-.right {
-  flex: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100%;
-  gap: 18px;
-
-  .signup {
-    background-color: #c82918;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-  }
-  .user {
+  .left {
+    flex: 3;
     display: flex;
     align-items: center;
-    font-weight: bold;
-    gap: 24px;
+    gap: 50px;
+  }
 
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
-    }
+  .logo {
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
     span {
-      @include res.sm {
+      @include res.md {
         display: none;
       }
-    }
 
-    .profile {
-      padding: 12px 24px;
-      background-color: #c82918;
-      color: white;
-      cursor: pointer;
-      border: none;
-      position: relative;
-
-      .notification {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: red;
-        color: white;
-        border-radius: 50%;
-        width: 26px;
-        height: 26px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      @include res.sm {
+        display: initial;
       }
     }
   }
-}
 
-.menuIcon {
-  display: none;
-  z-index: 999;
-
-  @include res.sm {
-    display: inline;
+  .logo img {
+    width: 70px;
   }
 
-  img {
-    width: 22px;
-    cursor: pointer;
-  }
-}
+  .right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 18px;
 
-.menu {
-  position: absolute;
-  background-color: rgba(180, 205, 222, 0.462);
-  color: black;
-  height: 100vh;
-  top: 0;
-  right: -50%;
-  width: 50%;
-  transition: all 1s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
+    .signup {
+      background-color: #c82918;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      gap: 24px;
 
-  &.active {
-    right: 0;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      span {
+        @include res.sm {
+          display: none;
+        }
+      }
+
+      .profile {
+        padding: 12px 24px;
+        background-color: #c82918;
+        color: white;
+        cursor: pointer;
+        border: none;
+        position: relative;
+
+        .notification {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background-color: red;
+          color: white;
+          border-radius: 50%;
+          width: 26px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .menuIcon {
+      display: none;
+      z-index: 999;
+
+      @include res.sm {
+        display: inline;
+        // background-color: white;
+      }
+
+      img {
+        width: 22px;
+        cursor: pointer;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      background-color: blue;
+      color: white;
+      height: 100vh;
+      top: 0;
+      right: -50%;
+      width: 50%;
+      transition: all 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      gap: 16px;
+
+      &.active {
+        right: 0;
+      }
+
+      @include res.sm {
+        a {
+          display: initial;
+        }
+      }
+    }
   }
 }
