@@ -1,3 +1,4 @@
+import Footer from "../../components/footer.jsx/Footer";
 import { useContext } from "react";
 import { Navbar } from "../../components/nav/Navbar";
 import "./layout.scss";
@@ -14,10 +15,16 @@ function Layout() {
       <div className="content">
         <Outlet />
       </div>
+      <div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 }
 
+export default Layout;
 // RequireAuth Component
 function RequireAuth() {
   const { currentUser } = useContext(AuthContext);
