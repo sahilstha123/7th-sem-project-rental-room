@@ -3,12 +3,14 @@ import "./list.scss";
 import { listData } from "../../lib/dummydata";
 import { Card } from "../card/Card";
 
-const List = () => {
+const List = ({ posts }) => {
   return (
     <div className="list">
-      {listData.map((item) => (
-        <Card key={item.id} item={item} />
-      ))}
+      {posts.length > 0 ? (
+        posts.map((item) => <Card key={item.id} item={item} />)
+      ) : (
+        <p>No items available.</p>
+      )}
     </div>
   );
 };

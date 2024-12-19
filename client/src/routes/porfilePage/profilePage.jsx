@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Anil from "../../assets/anil.jpg";
 import List from "../../components/list/List";
 import "./profilePage.scss";
@@ -9,17 +9,22 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
-  // const data = useLoaderData();
+  const data = useLoaderData() || { myPosts: [], savedPosts: [] };
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogout = async () => {
+    setLoading(true);
     try {
       await apiRequest.post("/auth/logout");
       updateUser(null);
       navigate("/");
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -37,9 +42,9 @@ const ProfilePage = () => {
             <span>
               Avatar:{" "}
               <img
-                src={currentUser?.user.avatar || "noavatar.jpg"}
+                src={currentUser?.user.avatar || "/assets/noavatar.jpg"}
                 alt="User Avatar"
-              />{" "}
+              />
             </span>
             <span>
               Username: <b>{currentUser?.user.username || ""}</b>
@@ -48,6 +53,7 @@ const ProfilePage = () => {
               Email : <b>{currentUser?.user.email || ""}</b>
             </span>
             <NWbutton
+              disabled={loading}
               style={{
                 border: "none",
                 width: "100px",
@@ -58,22 +64,25 @@ const ProfilePage = () => {
               }}
               onClick={handleLogout}
             >
-              Logout
+              {loading ? "Logging out..." : "Logout"}
             </NWbutton>
           </div>
+
           <div className="title">
             <h1>My List</h1>
             <Link to="/add">
               <button>Create New Post</button>
             </Link>
           </div>
-          <List />
+          <List posts={data.myPosts} />
+
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <List />
+          <List posts={data.savedPosts} />
         </div>
       </div>
+
       <div className="chatContainer">
         <div className="wrapper">
           <Chat />
