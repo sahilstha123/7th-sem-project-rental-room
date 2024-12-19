@@ -2,7 +2,11 @@ import { useState } from "react";
 import "./App.css";
 // import { Navbar } from "./components/nav/Navbar";
 import { Homepage } from "./routes/homepage/Homepage"; // Import Homepage correctly
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useRouteError,
+} from "react-router-dom";
 import ListPage from "./routes/listPage/ListPage";
 // import { Layout } from "./routes/layout/Layout";
 import "./routes/layout/layout.scss";
@@ -19,6 +23,15 @@ import {
   singlePageLoader,
 } from "./lib/Loaders";
 
+// export const singlePageLoader = async ({ request, params }) => {
+//   // const res = await apiRequest("/post/" + params.id); // Fetch post by ID
+//   console.log("data-->", res);
+//   return {
+//     test: "testing",
+//     message: "Data received successfully",
+//   }; // Return the data
+// };
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -32,12 +45,12 @@ function App() {
         {
           path: "/list", // List page route
           element: <ListPage />,
-          Loader: listPageLoader,
+          loader: listPageLoader,
         },
         {
           path: "/:id",
           element: <Singlepage />,
-          Loader: singlePageLoader,
+          loader: singlePageLoader,
         },
         {
           path: "/register",
@@ -56,7 +69,7 @@ function App() {
         {
           path: "/profile",
           element: <ProfilePage />,
-          Loader: profilePageLoader,
+          loader: profilePageLoader,
         },
         {
           path: "/profile/update",

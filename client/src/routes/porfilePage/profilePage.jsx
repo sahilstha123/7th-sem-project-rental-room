@@ -9,9 +9,11 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const ProfilePage = () => {
-  const data = useLoaderData() || { myPosts: [], savedPosts: [], chats: [] }; // Include chats data
+  const { userPosts, savedPosts, chats } = useLoaderData(); // Include chats data
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  console.log("profile post data->", userPosts);
 
   const [loading, setLoading] = useState(false);
 
@@ -74,19 +76,19 @@ const ProfilePage = () => {
               <button>Create New Post</button>
             </Link>
           </div>
-          <List posts={data.myPosts} />
+          <List posts={userPosts} />
 
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <List posts={data.savedPosts} />
+          <List posts={savedPosts} />
         </div>
       </div>
 
       <div className="chatContainer">
         <div className="wrapper">
           {/* Pass the chats data to the Chat component */}
-          <Chat chats={data.chats} />
+          <Chat chats={chats} />
         </div>
       </div>
     </div>
