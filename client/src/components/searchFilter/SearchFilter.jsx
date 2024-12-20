@@ -15,9 +15,9 @@ export const SearchFilter = () => {
   });
 
   // Update searchParams whenever query changes
-  useEffect(() => {
-    setSearchParams(query);
-  }, [query, setSearchParams]);
+  // useEffect(() => {
+  //   setSearchParams(query);
+  // }, [query, setSearchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

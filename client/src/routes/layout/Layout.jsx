@@ -1,9 +1,9 @@
-import Footer from "../../components/footer.jsx/Footer";
 import { useContext } from "react";
 import { Navbar } from "../../components/nav/Navbar";
 import "./layout.scss";
 import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import Footer from "../../components/footer/Footer";
 
 // Layout Component
 function Layout() {

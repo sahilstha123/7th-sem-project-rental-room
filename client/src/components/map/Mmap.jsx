@@ -10,16 +10,17 @@ function Map({ items }) {
     [30.447, 88.201], // Northeast corner (approx)
   ];
 
+  console.log({ items });
   // Set the center of the map dynamically based on items
   const center =
-    items.length === 1
-      ? [items[0].latitude, items[0].longitude] // Use item's coordinates if one item
+    items?.length > 0
+      ? [items[0].latitude ?? 0, items[0].longitude ?? 0] // Use item's coordinates if one item
       : [28.3949, 84.124]; // Default to center of Nepal (Kathmandu) if multiple items
 
   return (
     <MapContainer
       center={center} // Dynamically set the center of the map
-      zoom={7} // Zoom level for Nepal
+      zoom={20} // Zoom level for Nepal
       scrollWheelZoom={true}
       className="map"
       maxBounds={nepalBounds} // Restrict map bounds to Nepal
