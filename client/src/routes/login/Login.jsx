@@ -1,16 +1,22 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.scss";
-import NWbutton from "../../components/button/NWbutton";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import Logo from "../../assets/logo.png";
 import { AuthContext } from "../../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEye,
+  faEyeSlash,
+  faExclamationTriangle,
+} from "@fortawesome/free-solid-svg-icons"; // Added triangle icon
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false); // State for password visibility
 
   const { updateUser } = useContext(AuthContext);
 
@@ -34,6 +40,9 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   return (
     <div className="container">
@@ -53,10 +62,15 @@ const Login = () => {
             <div className="input-field">
               <input
                 name="password"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+              <FontAwesomeIcon
+                icon={passwordVisible ? faEyeSlash : faEye}
+                className="password-toggle-icon"
+                onClick={togglePasswordVisibility} // Toggle password visibility
               />
             </div>
           </div>

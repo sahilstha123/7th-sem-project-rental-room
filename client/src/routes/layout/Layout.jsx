@@ -1,3 +1,4 @@
+import Footer from "../../components/footer/Footer.jsx";
 import { useContext } from "react";
 import { Navbar } from "../../components/nav/Navbar";
 import "./layout.scss";
