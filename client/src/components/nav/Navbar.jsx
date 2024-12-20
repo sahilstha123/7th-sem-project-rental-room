@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 
 import "./navbar.scss";
@@ -13,27 +12,21 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false); // Menu toggle state
   const nav = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  console.log("current auth", currentUser);
   const fetch = useNotificationStore((state) => state.fetch);
-  const number = 0;
+  const number = 0; // Notification placeholder (replace with real data if available)
 
   useEffect(() => {
-    fetch(); // Fetch notification number when Navbar loads
-  }, []);
+    fetch(); // Fetch notification data when Navbar loads
+  }, [fetch]);
 
   const handleLogin = () => {
-    nav("/login"); // Redirect to login page when clicked
+    nav("/login"); // Redirect to login page
   };
-
-  // useEffect(() => {
-  //   console.log(window.innerWidth);
-  // }, [window]);
 
   return (
     <nav>
       <div className="left">
         <Link to="/" className="logo">
-          {/* Home link */}
           <img src={logo} alt="Smart Stay logo" />
           <span>Smart Stay</span>
         </Link>
@@ -42,6 +35,7 @@ export const Navbar = () => {
         <Link to="/agents">Agents</Link>
         <Link to="/contact">Contact</Link>
       </div>
+
       <div className="right">
         {currentUser ? (
           <div className="user">
@@ -50,33 +44,12 @@ export const Navbar = () => {
               alt="Avatar"
               className="avatar"
             />
-            <span>{currentUser?.user.username}</span> {/* Display username */}
+            <span>{currentUser?.user.username}</span>
             <Link to="/profile" className="profile">
               {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>
-        ) : ( */}
-        <NWbutton
-          onClick={handleLogin}
-          className="signup"
-          style={{
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </NWbutton>
-        <Link to="/register">
-          <NWbutton
-            className="signup"
-            style={{
-              cursor: "pointer",
-            }}
-          >
-            Signup
-          </NWbutton>
-        </Link>
-        {/* )} */}
         ) : (
           <>
             <NWbutton onClick={handleLogin} className="signup">
@@ -87,15 +60,17 @@ export const Navbar = () => {
             </Link>
           </>
         )}
+
         <div className="menuIcon">
           <img src={menu} alt="Menu" onClick={() => setOpen((prev) => !prev)} />
         </div>
+
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
           <a href="/">Agents</a>
-          <a href="/">Sign up</a>
+          <a href="/register">Sign up</a>
         </div>
       </div>
     </nav>

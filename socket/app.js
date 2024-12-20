@@ -6,6 +6,8 @@ const io = new Server({
   },
 });
 
+const PORT = 4000; // Correctly defining the PORT variable
+
 let onlineUsers = [];
 const addUser = (userId, socketId) => {
   const userExists = onlineUsers.find((user) => user.userId === userId);
@@ -25,7 +27,7 @@ const removeUser = (socketId) => {
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
-  socket.on("neUser", (userId) => {
+  socket.on("newUser", (userId) => {
     addUser(userId, socket.id);
     console.log(`User ${userId} added with socket ID: ${socket.id}`);
   });
@@ -52,4 +54,5 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(4000); // The server listens on port 4000
+io.listen(PORT); // The server listens on port 4000
+console.log(`Socket.IO server running on http://localhost:${PORT}`);

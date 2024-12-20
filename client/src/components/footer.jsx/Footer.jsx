@@ -1,18 +1,10 @@
 import React from "react";
 import "./footer.scss";
-
+import logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <footer class="footer">
       <div class="footer-content">
-        <div class="section">
-          <h2>About Us</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            dicta animi excepturi earum quam laborum vitae dolorum, et eius
-            modi. Dolor quibusdam blanditiis excepturi cumque?
-          </p>
-        </div>
         <div class="section">
           <h2>Quick Links</h2>
           <ul>
@@ -20,7 +12,7 @@ const Footer = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/">Services</a>
+              <a href="/profile">Profile</a>
             </li>
             <li>
               <a href="/">Contact</a>
@@ -30,26 +22,54 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div class="section">
-          <h2>Follow us</h2>
-          <ul class="social-links">
+        <div className="account">
+          <h2>Account</h2>
+          <ul>
             <li>
-              {/* <FaFacebookF /> */}
-              <a href="/">Facebook</a>
+              <a href="/">Update Profile</a>
             </li>
             <li>
-              {/* <FaTwitter /> */}
-              <a href="/">Twitter</a>
-            </li>
-            <li>
-              {/* <FaInstagram /> */}
-              <a href="/">Instagram</a>
+              <a href="/">List Property</a>
             </li>
           </ul>
         </div>
+        <div class="section1">
+          <div className="logo">
+            <img src={logo} alt="logo.png" />
+          </div>
+          <div>
+            <ol class="social-links">
+              <li>
+                {/* <Number /> */}
+                <a href="/" className="phone">
+                  <img src="/phone.png" alt="" />
+                  +977 9807654398
+                </a>
+              </li>
+              <p>Contact Us</p>
+            </ol>
+            <div className="logos">
+              <div>
+                <a href="/">
+                  <img src="/facebook.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="/">
+                  <img src="/insta.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="/">
+                  <img src="/twitter.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="footer-bottom">
-        <p>2024 Code with Us. All Rights Reserved.</p>
+        <p>&copy;All Rights reserved to SmartStay</p>
       </div>
     </footer>
   );
