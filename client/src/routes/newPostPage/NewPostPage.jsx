@@ -8,6 +8,7 @@ export const NewPostPage = () => {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
   const [desc, setDesc] = useState(""); // State to handle description input
+  const [successMessage, setSuccessMessage] = useState(""); // State to handle success message
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -38,6 +39,11 @@ export const NewPostPage = () => {
           phoneNumber: parseInt(inputs.phoneNumber),
         },
       });
+      // Show success message
+      setSuccessMessage("New post created successfully!");
+      setTimeout(() => {
+        setSuccessMessage(""); // Hide success message after a few seconds
+      }, 2000); // Hide message after 3 seconds
       navigate("/" + res.data.id);
     } catch (err) {
       console.log(err);
@@ -88,6 +94,7 @@ export const NewPostPage = () => {
                 required
               />
             </div>
+
             {/* Phone Number Input */}
             <div className="item">
               <label htmlFor="phoneNumber">Phone Number</label>
@@ -178,7 +185,6 @@ export const NewPostPage = () => {
             {/* Parking Input */}
             <div className="item">
               <label htmlFor="parking">Parking</label>
-
               <select name="parking">
                 <option value="NotAvailable">Not Available</option>
                 <option value="Available">Available</option>
@@ -199,7 +205,7 @@ export const NewPostPage = () => {
               <label htmlFor="balcony">Balcony</label>
               <select name="balcony">
                 <option value="NotAvailable">Not Available</option>
-                <option value="Availabel">Available</option>
+                <option value="Available">Available</option>
               </select>
             </div>
 
@@ -250,6 +256,9 @@ export const NewPostPage = () => {
           setState={setImages}
         />
       </div>
+
+      {/* Success Message */}
+      {successMessage && <div className="successMessage">{successMessage}</div>}
     </div>
   );
 };

@@ -9,7 +9,7 @@ import apiRequest from "../../lib/apiRequest";
 export const Singlepage = () => {
   const post = useLoaderData();
 
-  const [saved, setSaved] = useState(post?.isSaved || false);
+  const [saved, setSaved] = useState(post?.isSaved);
   const { currentUser } = useContext(AuthContext);
   console.log({ post });
 
@@ -145,7 +145,7 @@ export const Singlepage = () => {
           </div>
 
           <p className="title">Location</p>
-          <div className="mapContainer">
+          <div className="mapContainer" style={{}}>
             {/* Ensure post has latitude and longitude before rendering map */}
             {latitude && longitude ? (
               <Mmap items={[post]} />

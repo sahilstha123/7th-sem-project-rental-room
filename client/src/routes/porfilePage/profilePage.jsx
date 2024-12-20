@@ -82,16 +82,16 @@ const ProfilePage = () => {
             <h1>Saved List</h1>
           </div>
           <List posts={savedPosts} />
-        </div>
+        </div>{" "}
       </div>
 
-      <div className="chatContainer">
+      {/* <div className="chatContainer">
         <div className="wrapper">
           {/* Pass the chats data to the Chat component */}
-          <Chat chats={chats} />
-        </div>
-      </div>
+      {/* <Chat chats={chats} /> */}
     </div>
+    // {/* // </div> */}
+    //  </div>
   );
 };
 

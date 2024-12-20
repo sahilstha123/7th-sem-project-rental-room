@@ -18,9 +18,11 @@ const ListPage = () => {
       <div className="listContainer">
         <div className="wrapper">
           <SearchFilter />
-          {post.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
+          {post?.length > 0 ? (
+            post?.map((item) => <Card key={item.id} item={item} />)
+          ) : (
+            <span>No Data to show</span>
+          )}
         </div>
       </div>
       <div className="mapContainer">

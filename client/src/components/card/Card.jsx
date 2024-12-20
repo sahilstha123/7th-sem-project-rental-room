@@ -40,16 +40,16 @@ export const Card = ({ item }) => {
               </span>
             </div>
           </div>
-          <div className="icons">
+          {/* <div className="icons">
             <div className="icon">
               <img src="/save.png" alt="Save Icon" />
             </div>
             <div className="icon">
               <img src="/chat.png" alt="Chat Icon" />
-            </div>
-          </div>
+            </div> */}
         </div>
       </div>
     </div>
+    // </div>
   );
 };
