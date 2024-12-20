@@ -7,6 +7,7 @@ import NWbutton from "../button/NWbutton";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useNotificationStore } from "../../lib/notificationStore";
+import footer from "../../components/footer/Footer";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false); // Menu toggle state
@@ -32,8 +33,7 @@ export const Navbar = () => {
         </Link>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/agents">Agents</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/footer">Contact</Link>
       </div>
 
       <div className="right">
@@ -69,7 +69,6 @@ export const Navbar = () => {
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
-          <a href="/">Agents</a>
           <a href="/register">Sign up</a>
         </div>
       </div>
