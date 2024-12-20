@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
@@ -32,8 +32,7 @@ export const Navbar = () => {
         </Link>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/agents">Agents</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/service">Service</Link>
       </div>
 
       <div className="right">
@@ -68,8 +67,7 @@ export const Navbar = () => {
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
-          <a href="/">Contact</a>
-          <a href="/">Agents</a>
+          <a href="/">Service</a>
           <a href="/register">Sign up</a>
         </div>
       </div>
