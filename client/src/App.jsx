@@ -22,6 +22,7 @@ import {
   profilePageLoader,
   singlePageLoader,
 } from "./lib/Loaders";
+import About from "./routes/aboutPage/About";
 
 // export const singlePageLoader = async ({ request, params }) => {
 //   // const res = await apiRequest("/post/" + params.id); // Fetch post by ID
@@ -60,6 +61,10 @@ function App() {
           path: "/login",
           element: <Login />,
         },
+        {
+          path: "/about",
+          element: <About />
+        }
       ],
     },
     {

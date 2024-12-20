@@ -1,0 +1,126 @@
+.sec {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ddd;
+
+  .cont {
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+
+    .content-section {
+      float: left;
+      width: 55%;
+
+      .title {
+        text-transform: uppercase;
+        font-size: 28px;
+      }
+
+      .content {
+        h3 {
+          margin-top: 20px;
+          color: #5d5d5d;
+          font-size: 21px;
+        }
+
+        p {
+          margin-top: 10px;
+          font-family: sans-serif;
+          font-size: 18px;
+          line-height: 1.5;
+        }
+
+        .button {
+          margin-top: 30px;
+
+          a {
+            background-color: #3d3d3d;
+            padding: 12px 40px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 25px;
+            letter-spacing: 1.5px;
+
+            &:hover {
+              background-color: #a52a2a;
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      .social {
+        margin-top: 40px;
+
+        i {
+          color: #a52a2a;
+          font-size: 30px;
+          padding: 0px 10px;
+
+          &:hover {
+            color: #3d3d3d;
+          }
+        }
+      }
+    }
+
+    .img-section {
+      float: right;
+      width: 40%;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .cont {
+      width: 80%;
+      display: block;
+      margin: auto;
+      padding-top: 50px;
+
+      .content-section {
+        float: none;
+        width: 100%;
+        display: block;
+        margin: auto;
+
+        .title {
+          text-align: center;
+          font-size: 19px;
+        }
+
+        .content {
+          .button {
+            text-align: center;
+
+            a {
+              padding: 9px 30px;
+            }
+          }
+        }
+
+        .social {
+          text-align: center;
+        }
+      }
+
+      .img-section {
+        float: right;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
