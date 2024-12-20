@@ -76,6 +76,7 @@ export const SearchFilter = () => {
             onChange={handleChange}
             min={2000}
             max={40000}
+            step={500}
           />
         </div>
         <div className="item">
@@ -89,6 +90,7 @@ export const SearchFilter = () => {
             onChange={handleChange}
             min={2000}
             max={40000}
+            step={1000}
           />
         </div>
         <div className="item">
@@ -97,6 +99,7 @@ export const SearchFilter = () => {
             type="number"
             id="bedroom"
             name="bedroom"
+            min={0}
             placeholder="Any"
             value={query.bedroom}
             onChange={handleChange}
