@@ -2,66 +2,90 @@
 
 .homePage {
   display: flex;
+  flex-direction: row; /* Default is row */
   height: 100vh;
 
+  @include res.md {
+    flex-direction: column; /* Stack elements vertically on medium screens */
+  }
+  @include res.sm {
+    flex-direction: column; /* Stack vertically for smaller screens */
+  }
+
   .wrapper {
-    flex: 3; /* Takes 3 parts of the flex container */
+    flex: 3;
     padding-right: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px; // Slightly reduced gap for better spacing
+    gap: 30px;
     height: 100%;
+
     @include res.md {
-      padding: 0;
+      padding: 20px; /* Add padding for better spacing */
     }
     @include res.sm {
       justify-content: flex-start;
-      padding-top: 10px;
+      padding: 10px;
+      text-align: center; /* Center text on small screens */
+      gap: 20px;
     }
 
     .title {
       font-size: 48px;
       font-weight: 700;
       color: #333;
-      margin-bottom: 10px;
 
       @include res.lg {
         font-size: 35px;
+      }
+      @include res.sm {
+        font-size: 28px; /* Smaller font size for mobile screens */
+        margin-bottom: 5px;
       }
     }
 
     .description {
       font-size: 18px;
-      line-height: 1.8; // Improved line height for readability
-      color: #555; // Softer color for text
-      font-family: "Georgia", serif; // Stylish font for elegance
+      line-height: 1.8;
+      color: #555;
+      font-family: "Georgia", serif;
       text-align: justify;
+
+      @include res.sm {
+        font-size: 14px; /* Smaller font size */
+        line-height: 1.5;
+        padding: 0 10px; /* Add side padding */
+      }
 
       span {
         font-weight: 700;
-        color: #c82918; // Highlight brand name
+        color: #c82918;
         font-style: italic;
       }
     }
   }
 
   .imgContainer {
-    flex: 2; /* Takes 2 parts of the flex container */
+    flex: 2;
     display: flex;
     align-items: center;
-    overflow: hidden; /* Prevents image from overflowing the container */
+    justify-content: center;
+    overflow: hidden;
     position: relative;
 
     @include res.md {
-      display: none;
+      display: none; /* Hide image on medium screens */
+    }
+    @include res.sm {
+      display: none; /* Hide image for smaller screens */
     }
 
     img {
       width: 100%;
       height: 100%;
-      position: absolute;
       object-fit: cover;
+      position: absolute;
       right: 0;
     }
   }

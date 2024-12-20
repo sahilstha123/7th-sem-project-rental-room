@@ -1,74 +1,82 @@
 .footer {
-  background-color: #2d3748;
-  padding-left: 10px;
-  padding-right: 10px;
-  // padding: 1.5rem 1rem; // py-6 px-4
-
-  @media (min-width: 768px) {
-    // md breakpoint
-    //   padding: 1.5rem 4rem; // md:px-16
+  background-color: #f4f4fe;
+  padding-bottom: 20px;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr; /* Fixed space for .section and .account, remaining space for .section1 */
+  gap: 20px; /* Optional: space between the grid items */
+  h2 {
+    line-height: 2;
   }
+}
 
-  @media (min-width: 1024px) {
-    // lg breakpoint
-    //   padding: 1.5rem 7rem; // lg:px-28
+.section {
+  padding-top: 20px;
+  padding-left: 100px;
+  /* You can add specific styles for the section */
+}
+
+.account {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* You can add specific styles for the account */
+}
+
+.section1 {
+  padding-top: 20px;
+  padding-left: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  // align-items: flex-end;
+  .logo {
+    width: 200px;
+    display: flex;
+
+    justify-content: center;
   }
-
-  .footer-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem; // gap-8
-    padding-top: 24px;
-
-    @media (min-width: 768px) {
-      // md:grid-cols-3
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .section {
-      h2 {
-        font-size: 1.125rem; // text-lg
-        font-weight: bold;
-        margin-bottom: 1rem; // mb-4
-        text-align: center;
-        color: #ffffff; // text-white
-      }
-
-      p,
-      a {
-        color: #d1d5db; // text-gray-300
-      }
-
-      a {
-        &:hover {
-          text-decoration: underline; // hover:underline
-        }
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1rem; // space-x-4
-
-        li {
-          display: flex;
-          align-items: center;
-          text-decoration: none;
-
-          svg {
-            color: #4299e1; // text-blue-500
-            margin-right: 0.5rem; // Adjust if needed
-          }
-        }
-      }
+  ol {
+    list-style: none;
+    line-height: 1.5;
+  }
+  .phone img {
+    width: 20px;
+  }
+  .logos {
+    display: flex;
+    gap: 10px;
+    a img {
+      width: 40px !important;
+      height: 40px;
     }
   }
-
-  .footer-bottom {
-    border-top: 1px solid #4a5568; // border-t border-gray-600
-    padding-top: 1.5rem; // pt-6
-    padding-bottom: 10px;
-    margin-top: 1.5rem; // mt-6
-    color: #d1d5db; // text-gray-300
-    text-align: center;
+  ol {
+    line-height: 2;
   }
+}
+
+ul {
+  list-style-type: none; // Remove default bullet points
+  padding-left: 0;
+
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+
+    &:before {
+      content: "•"; // Add custom bullet point
+      position: absolute;
+      left: 0;
+      color: #333; // Match your text color
+    }
+  }
+}
+.footer-bottom {
+  display: flex;
+  justify-content: center;
 }

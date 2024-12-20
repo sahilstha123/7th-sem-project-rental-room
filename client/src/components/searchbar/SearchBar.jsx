@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 export const SearchBar = () => {
   const [query, setQuery] = useState({
     city: "",
-    minPrice: 2000,
-    maxPrice: 40000,
+    minPrice: "",
+    maxPrice: "",
   });
 
   const navigate = useNavigate(); // hook for programmatic navigation
@@ -44,6 +44,7 @@ export const SearchBar = () => {
           name="minPrice"
           min={2000}
           max={40000}
+          step={500}
           value={query.minPrice}
           placeholder="MinPrice"
           onChange={handleChange}
@@ -53,6 +54,7 @@ export const SearchBar = () => {
           name="maxPrice"
           min={2000}
           max={40000}
+          step={1000}
           value={query.maxPrice}
           placeholder="MaxPrice"
           onChange={handleChange}
