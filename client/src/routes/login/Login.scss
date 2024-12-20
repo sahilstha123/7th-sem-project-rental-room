@@ -52,6 +52,17 @@ form {
       background-color: #3d4785;
     }
   }
+  p {
+    margin-bottom: 12px;
+    a {
+      color: blue;
+    }
+  }
+  span{
+    a{
+      color: blue;
+    }
+  }
 }
 
 .input-group {
@@ -73,19 +84,9 @@ form {
       transition: max-height 0.5s;
       overflow: hidden;
 
-      .password-toggle-icon{
+      .password-toggle-icon {
         position: absolute;
       }
-    }
-  }
-
-  p {
-    font-size: 13px;
-    margin-bottom: 20px;
-
-    a {
-      text-decoration: none;
-      color: #3d4785;
     }
   }
 }

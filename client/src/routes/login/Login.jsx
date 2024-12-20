@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.scss";
-import NWbutton from "../../components/button/NWbutton";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import Logo from "../../assets/logo.png";
